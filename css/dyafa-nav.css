@@ -1,0 +1,156 @@
+/* Dyafa shared tokens + site header. Used on ALL pages (Bootstrap pages and the guest app). */
+:root{
+  --dy-gold:#d4af37; --dy-gold-2:#f3d56b; --dy-gold-d:#8a6a1f;
+  --dy-bg:#0b0b0f; --dy-surface:#14141b; --dy-surface-2:#1c1c24;
+  --dy-text:#e7e0d3; --dy-heading:#f3d56b; --dy-accent-text:#d4af37; --dy-muted:#b9b2a3;
+  --dy-border:rgba(243,213,107,.16); --dy-nav-bg:rgba(11,11,15,.9); --dy-nav-h:76px;
+  --dy-radius:16px; --dy-shadow:0 10px 35px rgba(0,0,0,.35);
+}
+:root[data-theme="light"]{
+  --dy-bg:#f6f6fb; --dy-surface:#fff; --dy-surface-2:#f1f2f6;
+  --dy-text:#1c1c24; --dy-heading:#14141b; --dy-accent-text:#8a6a1f; --dy-muted:#5d606b;
+  --dy-border:rgba(20,20,27,.10); --dy-nav-bg:rgba(255,255,255,.92); --dy-shadow:0 12px 35px rgba(20,20,27,.12);
+}
+/* logo variants (same rule as the guest app) */
+.logo-dark-mode{display:block}.logo-light-mode{display:none}
+[data-theme="light"] .logo-dark-mode{display:none}[data-theme="light"] .logo-light-mode{display:block}
+
+.dy-nav{position:sticky;top:0;z-index:1000;background:var(--dy-nav-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--dy-border);font-family:"Inter",sans-serif;margin:0}
+.dy-nav *{box-sizing:border-box}
+.dy-nav__inner{max-width:1320px;margin:0 auto;padding:10px 20px;min-height:var(--dy-nav-h);display:flex;align-items:center;gap:18px}
+.dy-brand{display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0}
+.dy-brand__logo{width:52px;height:52px;border-radius:50%;background:#121218;border:2px solid rgba(212,175,55,.45);display:grid;place-items:center;overflow:hidden}
+.dy-brand__logo img{width:100%;height:100%;object-fit:contain}
+.dy-brand__text strong{display:block;font-family:"Playfair Display",serif;font-size:1.2rem;line-height:1.1;color:var(--dy-heading)}
+.dy-brand__text small{display:block;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dy-muted)}
+.dy-links{flex:1;display:flex;align-items:center;gap:4px;margin:0;padding:0}
+.dy-links a,.dy-drop__btn{font:600 .8rem "Inter",sans-serif;letter-spacing:.09em;text-transform:uppercase;color:var(--dy-text);text-decoration:none;
+  padding:10px 12px;border-radius:10px;background:none;border:0;cursor:pointer;transition:.25s;white-space:nowrap}
+.dy-links a:hover,.dy-drop__btn:hover,.dy-links a.active,.dy-drop.active .dy-drop__btn{color:var(--dy-accent-text)}
+.dy-links a.active{box-shadow:inset 0 -2px 0 var(--dy-gold)}
+.dy-drop{position:relative}
+.dy-drop__menu{display:none;position:absolute;top:100%;left:0;min-width:190px;padding:8px;background:var(--dy-surface);border:1px solid var(--dy-border);border-radius:14px;box-shadow:var(--dy-shadow)}
+.dy-drop:hover .dy-drop__menu,.dy-drop.open .dy-drop__menu,.dy-drop:focus-within .dy-drop__menu{display:block}
+.dy-drop__menu a{display:block}
+.dy-cta{margin-left:auto;display:flex;align-items:center;gap:10px}
+.dy-links .dy-btn{padding:11px 18px;border-radius:12px;border:1px solid var(--dy-gold);letter-spacing:.08em}
+.dy-links .dy-btn--solid{background:linear-gradient(135deg,var(--dy-gold-2),var(--dy-gold));color:#14141b;box-shadow:0 6px 18px rgba(212,175,55,.3)}
+.dy-links .dy-btn--solid:hover{color:#14141b;filter:brightness(1.07);transform:translateY(-1px)}
+.dy-links .dy-btn--ghost{color:var(--dy-accent-text)}
+.dy-links .dy-btn--ghost:hover,.dy-links .dy-btn--ghost.active{background:rgba(212,175,55,.14);box-shadow:none}
+.dy-tools{display:flex;align-items:center;gap:8px}
+.dy-icon-btn{width:44px;height:44px;border-radius:14px;border:1px solid var(--dy-border);background:var(--dy-surface-2);color:var(--dy-accent-text);cursor:pointer;font-size:1rem;display:grid;place-items:center;transition:.25s}
+.dy-icon-btn:hover{border-color:var(--dy-gold);transform:translateY(-1px)}
+.dy-burger{display:none}
+
+@media (max-width:1100px){
+  .dy-burger{display:grid}.dy-tools{margin-left:auto}
+  .dy-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:2px;padding:12px 20px 20px;
+    background:var(--dy-nav-bg);backdrop-filter:blur(14px);border-bottom:1px solid var(--dy-border);max-height:calc(100vh - var(--dy-nav-h));overflow:auto}
+  .dy-links.open{display:flex}
+  .dy-drop__btn{width:100%;text-align:left}
+  .dy-drop__menu{display:block;position:static;border:0;box-shadow:none;background:none;padding:0 0 0 14px}
+  .dy-cta{margin:10px 0 0;flex-direction:column;align-items:stretch}.dy-links .dy-btn{text-align:center}
+}
+@media (max-width:480px){.dy-brand__text small{display:none}}
+
+/* Guest-services page: keep the app's own tab bar under the shared header */
+body.dy-guest .tab-navigation{top:calc(var(--dy-nav-actual, var(--dy-nav-h)) - 1px);background:#14141b;margin-top:0}
+:root[data-theme="light"] body.dy-guest .tab-navigation{background:#fff}
+
+/* ---- Header: full width on every page (the Bootstrap wrapper used to box it at 1320px) ---- */
+.dy-page{max-width:none!important}
+.dy-links a.dy-btn--solid.active{box-shadow:0 6px 18px rgba(212,175,55,.45);color:#14141b}
+.dy-drop__menu a:hover{background:rgba(212,175,55,.12)}
+@media (min-width:1101px){.dy-drop__menu{top:calc(100% - 2px)}}
+
+/* ---- Footer: one component for every page (no Bootstrap needed, so the guest app can use it too) ---- */
+.dy-footer{position:relative;background:#0b0b0f;color:#e7e0d3;border-top:1px solid var(--dy-border);font-family:"Inter",sans-serif;margin:0}
+.dy-footer *{box-sizing:border-box}
+.dy-footer.has-newsletter{margin-top:-110px;padding-top:110px}
+.dy-footer a{text-decoration:none;color:inherit}
+.dy-footer__grid{max-width:1320px;margin:0 auto;padding:60px 20px 40px;display:grid;grid-template-columns:1.2fr 1.3fr 1fr 1fr;gap:36px}
+.dy-footer.has-newsletter .dy-footer__grid{padding-top:80px}
+.dy-footer__brand{align-self:start;background:linear-gradient(135deg,#f3d56b,#d4af37);color:#14141b;border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:10px}
+.dy-footer__name{display:block;margin-bottom:6px}
+.dy-footer__name strong{display:block;font:700 1.4rem "Playfair Display",serif;letter-spacing:2px;color:#14141b}
+.dy-footer__name span{display:block;font-size:.85rem;letter-spacing:1px;opacity:.85}
+.dy-footer__brand>a:not(.dy-footer__name){font-size:.85rem;line-height:1.5;display:flex;gap:10px;align-items:flex-start;word-break:break-word}
+.dy-footer__brand>a:not(.dy-footer__name):hover{text-decoration:underline}
+.dy-footer__brand i{margin-top:.2em;width:1em;text-align:center}
+.dy-footer .dy-footer__col h6{margin:0 0 18px;font:600 .8rem "Inter",sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--dy-gold)!important}
+.dy-footer__col>a{display:block;margin-bottom:8px;font-size:.95rem;color:#e7e0d3;transition:.25s}
+.dy-footer__col>a:not(.dy-footer__plain)::before{content:"\f105";font-family:"Font Awesome 6 Free";font-weight:900;margin-right:10px;color:var(--dy-gold)!important}
+.dy-footer__col>a:hover{color:var(--dy-gold-2);transform:translateX(3px)}
+.dy-footer__plain{display:flex!important;gap:12px;align-items:flex-start;line-height:1.5}
+.dy-footer__plain i{color:var(--dy-gold);margin-top:.25em;width:1em;text-align:center}
+.dy-footer__social{display:flex;gap:8px;margin-top:16px}
+.dy-footer__social a{width:38px;height:38px;border-radius:50%;border:1px solid rgba(243,213,107,.35);display:grid;place-items:center;transition:.25s}
+.dy-footer__social a:hover{background:var(--dy-gold);color:#14141b;border-color:var(--dy-gold)!important}
+.dy-footer__bar{max-width:1320px;margin:0 auto;padding:22px 20px;border-top:1px solid rgba(255,255,255,.1);display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;font-size:.9rem}
+.dy-footer__bar nav{display:flex;flex-wrap:wrap}
+.dy-footer__bar nav a{padding:0 15px;border-right:1px solid rgba(255,255,255,.3);line-height:1}
+.dy-footer__bar nav a:first-child{padding-left:0}.dy-footer__bar nav a:last-child{border-right:0;padding-right:0}
+.dy-footer__bar nav a:hover{color:var(--dy-gold-2)}
+@media (max-width:991px){.dy-footer__grid{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.dy-footer__grid{grid-template-columns:1fr}.dy-footer__bar{justify-content:center;text-align:center}}
+
+/* ---- Room detail pop-up ---- */
+.dy-modal{position:fixed;inset:0;z-index:100000;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(5,5,8,.75);backdrop-filter:blur(4px)}
+.dy-modal.open{display:flex}
+.dy-modal__box{position:relative;width:100%;max-width:640px;max-height:92vh;overflow:auto;background:var(--dy-surface);color:var(--dy-text);border:1px solid var(--dy-border);border-radius:var(--dy-radius);box-shadow:var(--dy-shadow);font-family:"Inter",sans-serif}
+.dy-modal__box img{display:block;width:100%;max-height:300px;object-fit:cover}
+.dy-modal__body{padding:24px}
+.dy-modal__body h3{margin:0 0 6px;font:700 1.5rem "Playfair Display",serif;color:var(--dy-heading)}
+.dy-modal__price{display:inline-block;margin-bottom:14px;padding:3px 12px;border-radius:10px;background:var(--dy-gold);color:#14141b;font-weight:600;font-size:.85rem}
+.dy-modal__feat{display:flex;flex-wrap:wrap;gap:8px 18px;margin:0 0 14px;color:var(--dy-muted);font-size:.9rem}
+.dy-modal__feat span i{color:var(--dy-accent-text);margin-right:6px}
+.dy-modal__actions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.dy-modal__actions a,.dy-modal__actions button{padding:11px 22px;border-radius:12px;font:600 .8rem "Inter",sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;text-decoration:none;border:1px solid var(--dy-gold);background:none;color:var(--dy-accent-text)}
+.dy-modal__actions a{background:linear-gradient(135deg,var(--dy-gold-2),var(--dy-gold));color:#14141b}
+.dy-modal__x{position:absolute;top:10px;right:10px;width:38px;height:38px;border-radius:50%;border:0;background:rgba(0,0,0,.6);color:#fff;font-size:1.2rem;cursor:pointer;z-index:2}
+
+/* ---- Legal pages / form feedback ---- */
+.dy-legal{max-width:820px}
+.dy-legal section{margin-top:28px}.dy-legal h4{margin-bottom:10px}.dy-legal p{line-height:1.8}
+.dy-legal__note{padding:10px 14px;border:1px dashed var(--dy-border);border-radius:12px;color:var(--dy-muted);font-size:.9rem}
+.dy-toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);z-index:100001;max-width:90vw;padding:12px 20px;border-radius:12px;background:#14141b;color:#f3d56b;border:1px solid var(--dy-gold);box-shadow:var(--dy-shadow);font:500 .9rem "Inter",sans-serif}
+
+/* ---- Header polish ---- */
+
+.dy-nav{transition:box-shadow .3s,background .3s}
+/* header keeps a fixed size on scroll (no layout shift) */
+.dy-nav.is-scrolled{box-shadow:0 8px 30px rgba(0,0,0,.28)}
+/* animated underline instead of a hard box-shadow */
+.dy-links>a:not(.dy-btn),.dy-drop__btn{position:relative}
+.dy-links>a:not(.dy-btn)::after,.dy-drop__btn::after{content:"";position:absolute;left:12px;right:12px;bottom:4px;height:2px;border-radius:2px;background:var(--dy-gold);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.dy-links>a:not(.dy-btn):hover::after,.dy-drop__btn:hover::after,.dy-drop.open .dy-drop__btn::after,.dy-drop.active .dy-drop__btn::after,.dy-links>a.active:not(.dy-btn)::after{transform:scaleX(1)}
+.dy-links a.active:not(.dy-btn){box-shadow:none}
+.dy-drop__menu{border-top:2px solid var(--dy-gold);animation:dyDrop .2s ease}
+@keyframes dyDrop{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.dy-brand:hover .dy-brand__logo{border-color:var(--dy-gold)}
+.dy-links a:focus-visible,.dy-drop__btn:focus-visible,.dy-icon-btn:focus-visible,.dy-brand:focus-visible{outline:2px solid var(--dy-gold);outline-offset:2px}
+@media (max-width:1100px){
+  .dy-links{border-top:1px solid var(--dy-border);box-shadow:0 18px 30px rgba(0,0,0,.25)}
+  .dy-links>a:not(.dy-btn),.dy-drop__btn{padding:14px 12px;border-bottom:1px solid var(--dy-border);border-radius:0}
+  .dy-links>a:not(.dy-btn)::after,.dy-drop__btn::after{display:none}
+  .dy-links a.active:not(.dy-btn){color:var(--dy-accent-text);background:rgba(212,175,55,.1)}
+  .dy-drop__menu{border-top:0;animation:none}
+}
+@media (prefers-reduced-motion:reduce){.dy-nav,.dy-drop__menu{transition:none;animation:none}}
+@media (max-width:1100px){.dy-links{background:var(--dy-surface)}}
+
+/* ---- Header brand: pinned to the far left, larger logo, refined name ---- */
+.dy-nav__inner{max-width:none;padding:10px clamp(16px,2.5vw,40px)}
+.dy-brand{gap:14px;margin-right:18px}
+.dy-brand__logo{width:62px;height:62px;border:2px solid var(--dy-gold);box-shadow:0 0 0 4px rgba(212,175,55,.15),0 6px 18px rgba(0,0,0,.28);transition:.3s}
+.dy-brand:hover .dy-brand__logo{box-shadow:0 0 0 5px rgba(212,175,55,.28),0 8px 22px rgba(212,175,55,.3);transform:scale(1.04)}
+.dy-brand__text{display:flex;flex-direction:column;gap:5px;padding-left:14px;border-left:1px solid var(--dy-border)}
+.dy-brand__text strong{font-size:1.5rem;font-weight:700;letter-spacing:.03em;line-height:1;
+  background:linear-gradient(135deg,var(--dy-gold-d),var(--dy-gold) 55%,var(--dy-gold-2));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+:root:not([data-theme="light"]) .dy-brand__text strong{background:linear-gradient(135deg,var(--dy-gold),var(--dy-gold-2));-webkit-background-clip:text;background-clip:text}
+.dy-brand__text small{font-size:.68rem;font-weight:600;letter-spacing:.28em;line-height:1}
+:root{--dy-nav-h:84px}
+@media (max-width:480px){.dy-brand__logo{width:50px;height:50px}.dy-brand__text{padding-left:10px}.dy-brand__text strong{font-size:1.15rem}:root{--dy-nav-h:70px}}
+[data-theme="light"] .dy-brand__logo{background:transparent}

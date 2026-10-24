@@ -1,0 +1,383 @@
+/* ==========================================
+   SPLASH / WELCOME SCREEN  (loads after guest-services.css)
+   Dark = default, light via [data-theme="light"]
+   ========================================== */
+
+.splash-screen {
+  --sp-gold: #d4af37;
+  --sp-gold-hi: #f6e08a;
+  --sp-gold-lo: #9c7a1c;
+  --sp-ink: #07070b;
+  --sp-welcome: rgba(246, 224, 138, 0.85);
+  --sp-sub: rgba(246, 224, 138, 0.8);
+  --sp-track: rgba(212, 175, 55, 0.18);
+  --sp-star: 255, 236, 170;
+
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  background:
+    radial-gradient(60% 55% at 50% 42%, rgba(212, 175, 55, 0.16) 0%, transparent 70%),
+    radial-gradient(900px 600px at 15% -10%, rgba(212, 175, 55, 0.22) 0%, transparent 60%),
+    radial-gradient(120% 90% at 50% 120%, rgba(0, 0, 0, 0.7) 0%, transparent 60%),
+    linear-gradient(160deg, #050507 0%, #0f0f16 55%, #17171f 100%);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.9s ease, visibility 0.9s ease, transform 0.9s ease;
+}
+
+.splash-screen.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.04);
+  pointer-events: none;
+}
+
+/* no page scrollbar behind the splash */
+html:has(.splash-screen:not(.fade-out)) {
+  overflow: hidden;
+}
+
+/* ---------- background layers ---------- */
+.splash-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.splash-stars {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1.5px 1.5px at 12% 18%, rgb(var(--sp-star)) 50%, transparent 51%),
+    radial-gradient(1px 1px at 27% 8%, rgb(var(--sp-star)) 50%, transparent 51%),
+    radial-gradient(2px 2px at 41% 26%, rgb(var(--sp-star)) 50%, transparent 51%),
+    radial-gradient(1px 1px at 58% 12%, rgb(var(--sp-star)) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 73% 22%, rgb(var(--sp-star)) 50%, transparent 51%),
+    radial-gradient(1px 1px at 86% 9%, rgb(var(--sp-star)) 50%, transparent 51%),
+    radial-gradient(2px 2px at 93% 30%, rgb(var(--sp-star)) 50%, transparent 51%),
+    radial-gradient(1px 1px at 6% 44%, rgb(var(--sp-star)) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 18% 62%, rgb(var(--sp-star)) 50%, transparent 51%),
+    radial-gradient(1px 1px at 82% 55%, rgb(var(--sp-star)) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 66% 68%, rgb(var(--sp-star)) 50%, transparent 51%),
+    radial-gradient(1px 1px at 34% 72%, rgb(var(--sp-star)) 50%, transparent 51%);
+  animation: spTwinkle 4s ease-in-out infinite alternate;
+}
+
+.splash-pyramids {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  max-height: 25vh;
+  opacity: 0;
+  animation: spRise 1.6s 0.3s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+
+/* ---------- content ---------- */
+.splash-screen .splash-content {
+  position: relative;
+  z-index: 1;
+  padding: 24px;
+  max-width: 100%;
+  animation: none;
+  color: inherit;
+}
+
+/* logo with a slowly turning gold ring + soft halo */
+.splash-screen .splash-logo {
+  position: relative;
+  width: clamp(170px, 26vmin, 250px);
+  aspect-ratio: 1;
+  margin: 0 auto clamp(22px, 4vh, 36px);
+  opacity: 0;
+  animation: spLogoIn 1.1s 0.1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.splash-screen .splash-logo::before {
+  /* halo */
+  content: "";
+  position: absolute;
+  inset: -22%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.35) 0%, transparent 65%);
+  animation: spPulse 3s ease-in-out infinite;
+}
+
+.splash-screen .splash-logo::after {
+  /* rotating ring */
+  content: "";
+  position: absolute;
+  inset: -9%;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent 0 55%, var(--sp-gold) 80%, var(--sp-gold-hi) 100%);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));
+  animation: spSpin 3.2s linear infinite;
+}
+
+.splash-screen .splash-logo .logo-circle {
+  position: relative;
+  z-index: 1;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.splash-screen .splash-logo .logo-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.55));
+}
+
+.splash-screen .splash-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.splash-screen .splash-welcome {
+  margin: 0 0 6px;
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.1rem, 2.6vw, 1.6rem);
+  letter-spacing: 0.12em;
+  color: var(--sp-welcome);
+  opacity: 0;
+  animation: spUp 0.9s 0.55s ease-out forwards;
+}
+
+.splash-screen .splash-title {
+  margin: 0;
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: clamp(2.8rem, 8.5vw, 5.6rem);
+  line-height: 1.08;
+  letter-spacing: 0.04em;
+  text-shadow: none;
+  background: linear-gradient(100deg, var(--sp-gold-lo) 0%, var(--sp-gold-hi) 30%, var(--sp-gold) 50%, var(--sp-gold-hi) 70%, var(--sp-gold-lo) 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  filter: drop-shadow(0 6px 18px rgba(212, 175, 55, 0.25));
+  opacity: 0;
+  animation: spTitleIn 1.4s 0.75s cubic-bezier(0.2, 0.8, 0.2, 1) forwards, spShimmer 3.5s 2.2s ease-in-out infinite;
+}
+
+.splash-screen .splash-title {
+  white-space: nowrap;
+}
+
+/* ornamental divider */
+.splash-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: clamp(14px, 2.6vh, 22px) 0 clamp(12px, 2.2vh, 18px);
+  opacity: 0;
+  animation: spFade 0.8s 1.05s ease-out forwards;
+}
+
+.splash-divider span {
+  display: block;
+  height: 1px;
+  width: clamp(48px, 12vw, 110px);
+  background: linear-gradient(90deg, transparent, var(--sp-gold));
+}
+
+.splash-divider span:last-child {
+  background: linear-gradient(270deg, transparent, var(--sp-gold));
+}
+
+.splash-divider i {
+  width: 8px;
+  height: 8px;
+  background: var(--sp-gold);
+  transform: rotate(45deg);
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.8);
+}
+
+.splash-screen .splash-subtitle {
+  margin: 0 0 clamp(26px, 5vh, 44px);
+  font-family: "Inter", sans-serif;
+  font-size: clamp(0.8rem, 1.8vw, 1.05rem);
+  font-weight: 400;
+  letter-spacing: 0.5em;
+  padding-left: 0.5em; /* optically re-centre tracked text */
+  text-transform: uppercase;
+  color: var(--sp-sub);
+  opacity: 0;
+  animation: spUp 0.9s 1.2s ease-out forwards;
+}
+
+/* progress line (replaces the bouncing dots) */
+.splash-progress {
+  width: clamp(140px, 30vw, 220px);
+  height: 2px;
+  border-radius: 2px;
+  background: var(--sp-track);
+  overflow: hidden;
+  opacity: 0;
+  animation: spFade 0.6s 1.3s ease-out forwards;
+}
+
+.splash-progress span {
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform-origin: left center;
+  transform: scaleX(0);
+  background: linear-gradient(90deg, var(--sp-gold-lo), var(--sp-gold-hi));
+  animation: spProgress 1.9s 1.1s cubic-bezier(0.45, 0.05, 0.3, 1) forwards;
+}
+
+/* ---------- light theme ---------- */
+:root[data-theme="light"] .splash-screen {
+  --sp-gold: #b8912a;
+  --sp-gold-hi: #d8b04a;
+  --sp-gold-lo: #7a5a12;
+  --sp-welcome: #6b5320;
+  --sp-sub: #7a5a12;
+  --sp-track: rgba(122, 90, 18, 0.15);
+  --sp-star: 184, 145, 42;
+  background:
+    radial-gradient(60% 55% at 50% 42%, rgba(212, 175, 55, 0.18) 0%, transparent 70%),
+    radial-gradient(900px 600px at 15% -10%, rgba(212, 175, 55, 0.2) 0%, transparent 60%),
+    linear-gradient(160deg, #ffffff 0%, #f7f4ec 60%, #efe9d9 100%);
+}
+
+:root[data-theme="light"] .splash-screen .splash-title {
+  filter: drop-shadow(0 4px 10px rgba(122, 90, 18, 0.15));
+}
+
+:root[data-theme="light"] .splash-screen .splash-logo .logo-image {
+  filter: drop-shadow(0 8px 18px rgba(122, 90, 18, 0.25));
+}
+
+:root[data-theme="light"] .splash-stars {
+  opacity: 0.5;
+}
+
+/* ---------- animations ---------- */
+@keyframes spUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes spFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes spLogoIn {
+  from { opacity: 0; transform: scale(0.82); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes spSpin {
+  to { transform: rotate(360deg); }
+}
+@keyframes spPulse {
+  0%, 100% { opacity: 0.55; transform: scale(0.96); }
+  50%      { opacity: 1;    transform: scale(1.06); }
+}
+@keyframes spShimmer {
+  0%   { background-position: 100% 0; }
+  100% { background-position: -120% 0; }
+}
+@keyframes spTwinkle {
+  from { opacity: 0.35; }
+  to   { opacity: 1; }
+}
+@keyframes spRise {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes spProgress {
+  to { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash-screen *,
+  .splash-screen *::before,
+  .splash-screen *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .splash-screen .splash-subtitle { letter-spacing: 0.34em; padding-left: 0.34em; }
+}
+
+/* ---------- extras ---------- */
+.splash-dust {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.splash-moon {
+  position: absolute;
+  top: 9%;
+  right: 12%;
+  width: clamp(60px, 9vmin, 110px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff6d6 0%, #f3d56b 55%, #c9a233 100%);
+  box-shadow: 0 0 60px 18px rgba(243, 213, 107, 0.28), 0 0 160px 60px rgba(212, 175, 55, 0.12);
+  opacity: 0;
+  animation: spFade 2s 0.4s ease-out forwards;
+}
+
+:root[data-theme="light"] .splash-moon {
+  background: radial-gradient(circle at 35% 35%, #fff 0%, #f3d56b 60%, #d8b04a 100%);
+  box-shadow: 0 0 60px 20px rgba(212, 175, 55, 0.25);
+}
+
+/* light sweep across the logo */
+.splash-screen .splash-logo .logo-circle::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.55) 50%, transparent 65%);
+  background-size: 250% 100%;
+  background-position: 150% 0;
+  mix-blend-mode: overlay;
+  animation: spSweep 3s 1.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.splash-skip {
+  margin: 18px 0 0;
+  font-family: "Inter", sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--sp-sub);
+  opacity: 0;
+  animation: spHint 1s 2.2s ease-out forwards;
+}
+
+@keyframes spTitleIn {
+  from { opacity: 0; transform: translateY(14px) scale(0.96); letter-spacing: 0.22em; filter: blur(14px); }
+  to   { opacity: 1; transform: none; letter-spacing: 0.04em; filter: blur(0) drop-shadow(0 6px 18px rgba(212, 175, 55, 0.25)); }
+}
+@keyframes spSweep {
+  0%   { background-position: 150% 0; }
+  60%, 100% { background-position: -50% 0; }
+}
+@keyframes spHint {
+  from { opacity: 0; }
+  to   { opacity: 0.55; }
+}

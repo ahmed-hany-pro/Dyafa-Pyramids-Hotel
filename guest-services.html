@@ -1,0 +1,2055 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>try{var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');if(t==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guest Services | Dyafa Pyramids Hotel &amp; Spa</title>
+    <meta name="description" content="Order food and drinks, book tours, laundry and housekeeping at Dyafa Pyramids Hotel &amp; Spa.">
+    <link rel="icon" href="img/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/guest-services.css">
+    <link rel="stylesheet" href="css/splash.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/dyafa-nav.css">
+    <link rel="stylesheet" href="css/guest-gate.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.4/dist/umd/supabase.js"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/dyafa-db.js"></script>
+    <script src="js/dyafa-store.js"></script>
+    <script src="js/guest-gate.js"></script>
+</head>
+
+<body class="dy-guest">
+    <!-- Splash Screen -->
+    <div id="splashScreen" class="splash-screen" role="status" aria-label="Welcome to Dyafa Pyramids Hotel &amp; Spa" title="Tap to skip">
+        <div class="splash-bg" aria-hidden="true">
+            <div class="splash-stars"></div>
+            <canvas class="splash-dust"></canvas>
+            <div class="splash-moon"></div>
+            <svg class="splash-pyramids" viewBox="0 0 1200 240" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="spLit" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#f3d56b" stop-opacity="0.55"/>
+                        <stop offset="1" stop-color="#d4af37" stop-opacity="0.05"/>
+                    </linearGradient>
+                    <linearGradient id="spShade" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#8a6a1f" stop-opacity="0.4"/>
+                        <stop offset="1" stop-color="#8a6a1f" stop-opacity="0.02"/>
+                    </linearGradient>
+                    <linearGradient id="spDune" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#d4af37" stop-opacity="0.22"/>
+                        <stop offset="1" stop-color="#d4af37" stop-opacity="0.02"/>
+                    </linearGradient>
+                </defs>
+                <!-- great pyramid (lit left face / shaded right face) -->
+                <polygon points="420,240 700,20 700,240" fill="url(#spLit)"/>
+                <polygon points="700,20 980,240 700,240" fill="url(#spShade)"/>
+                <!-- second pyramid -->
+                <polygon points="120,240 310,95 310,240" fill="url(#spLit)"/>
+                <polygon points="310,95 500,240 310,240" fill="url(#spShade)"/>
+                <!-- small pyramid -->
+                <polygon points="900,240 1030,140 1030,240" fill="url(#spLit)"/>
+                <polygon points="1030,140 1160,240 1030,240" fill="url(#spShade)"/>
+                <!-- dunes -->
+                <path d="M0,240 C150,200 300,215 460,205 C640,194 760,222 920,208 C1050,198 1130,212 1200,204 L1200,240 Z" fill="url(#spDune)"/>
+            </svg>
+        </div>
+        <div class="splash-content">
+            <div class="splash-logo">
+                <div class="logo-circle">
+                    <img src="assets/logo-dark.png" alt="Dyafa Pyramids Hotel & Spa Logo" class="logo-image logo-dark-mode">
+                    <img src="assets/logo-light.png" alt="Dyafa Pyramids Hotel & Spa Logo" class="logo-image logo-light-mode">
+                </div>
+            </div>
+            <div class="splash-text">
+                <p class="splash-welcome">Welcome to</p>
+                <h1 class="splash-title">Dyafa Hotel</h1>
+                <div class="splash-divider" aria-hidden="true"><span></span><i></i><span></span></div>
+                <p class="splash-subtitle">Pyramids &amp; Spa</p>
+                <div class="splash-progress" aria-hidden="true"><span></span></div>
+                <p class="splash-skip">Tap anywhere to enter</p>
+            </div>
+        </div>
+    </div>
+<!-- Site Header Start -->
+<header class="dy-nav"><div class="dy-nav__inner">
+  <a class="dy-brand" href="index.html"><span class="dy-brand__logo"><img src="assets/logo-dark-sm.png" class="logo-dark-mode" alt="Dyafa Hotel logo"><img src="assets/logo-light.png" class="logo-light-mode" alt="Dyafa Hotel logo"></span>
+    <span class="dy-brand__text"><strong>Dyafa Hotel</strong><small>Pyramids &amp; Spa</small></span></a>
+  <nav class="dy-links" id="dyLinks" aria-label="Main">
+    <a href="index.html">Home</a><a href="about.html">About</a><a href="room.html">Rooms</a><a href="service.html">Services</a>
+    <div class="dy-drop"><button type="button" class="dy-drop__btn">More <i class="fas fa-chevron-down" style="font-size:.65rem"></i></button>
+      <div class="dy-drop__menu"><a href="team.html">Our Team</a><a href="testimonial.html">Testimonials</a></div></div>
+    <a href="contact.html">Contact</a>
+    <div class="dy-cta"><a class="dy-btn dy-btn--ghost active" href="guest-services.html"><i class="fas fa-concierge-bell"></i> Guest Services</a>
+      <a class="dy-btn dy-btn--solid" href="booking.html">Book Now</a></div>
+  </nav>
+  <div class="dy-tools"><button id="themeToggle" class="dy-icon-btn" type="button" aria-label="Toggle theme" title="Toggle theme"></button><button class="dy-icon-btn dy-burger" type="button" data-dy-burger aria-expanded="false" aria-label="Menu"><i class="fas fa-bars"></i></button></div>
+</div></header>
+<!-- Site Header End -->
+<!-- Guest check-in gate Start -->
+<div class="gg-overlay" id="guestGate" role="dialog" aria-modal="true" aria-labelledby="ggTitle">
+  <div class="gg-card">
+    <a class="gg-close" id="ggClose" href="index.html" aria-label="Close and go back to the home page" title="Close"><i class="fas fa-times"></i></a>
+    <div class="gg-head"><i class="fas fa-concierge-bell"></i><h2 id="ggTitle">Guest Check-in</h2>
+      <p>Send your details to reception. Guest Services unlocks once your room is assigned.</p></div>
+    <div class="gg-tabs" role="tablist">
+      <button type="button" class="gg-tab active" data-gg="new" role="tab"><i class="fas fa-user-plus"></i> New check-in</button>
+      <button type="button" class="gg-tab" data-gg="reg" role="tab"><i class="fas fa-key"></i> Already registered</button></div>
+    <div class="gg-wait" id="ggPending" hidden>
+      <i class="fas fa-hourglass-half gg-wait__ico"></i>
+      <h2>Waiting for reception</h2>
+      <p>Thank you, <b id="ggPendName"></b>. Your request was sent to the front desk.</p>
+      <p class="gg-wait__info" id="ggPendInfo"></p>
+      <p class="gg-wait__hint">Guest Services will open automatically as soon as reception assigns your room. You can keep this page open.</p>
+      <button type="button" class="gg-submit gg-submit--ghost" id="ggCancel"><i class="fas fa-times"></i> Cancel request</button>
+    </div>
+    <div class="gg-wait" id="ggEnded" hidden>
+      <i class="fas fa-door-closed gg-wait__ico"></i>
+      <h2 id="ggEndedTitle"></h2>
+      <p id="ggEndedText"></p>
+      <button type="button" class="gg-submit" id="ggNewReq"><i class="fas fa-redo"></i> Send a new request</button>
+    </div>
+    <form id="ggRegForm" novalidate hidden><div class="gg-grid">
+      <div class="gg-field full"><label for="ggRoom">Room number *</label><input id="ggRoom" type="text" maxlength="20" autocomplete="off" placeholder="e.g. 204"><span class="gg-err">Enter your room number</span></div>
+      <div class="gg-field full"><label for="ggRegName">Registration name *</label><input id="ggRegName" type="text" maxlength="100" autocomplete="name" placeholder="Name the room is registered under"><span class="gg-err">Enter the registration name</span></div>
+      <div class="gg-field full"><label for="ggCompanion">Name of the person staying with you in the room *</label><input id="ggCompanion" type="text" maxlength="100" autocomplete="off" placeholder="Full real name, as on their ID"><span class="gg-err">Enter the name of the person staying with you</span></div>
+    </div><p id="ggRegError" class="gg-err" role="alert" hidden style="margin:0 0 12px;color:#dc3545;font-size:.85rem"></p><button type="submit" class="gg-submit"><i class="fas fa-sign-in-alt"></i> Send request to reception</button></form>
+    <form id="ggForm" novalidate><div class="gg-grid">
+      <div class="gg-field"><label for="ggFirst">First name *</label><input id="ggFirst" type="text" autocomplete="given-name" maxlength="60"><span class="gg-err">Enter your first name</span></div>
+      <div class="gg-field"><label for="ggLast">Last name *</label><input id="ggLast" type="text" autocomplete="family-name" maxlength="60"><span class="gg-err">Enter your last name</span></div>
+      <div class="gg-field"><label for="ggIn">Check-in date *</label><input id="ggIn" type="date"><span class="gg-err">Choose a valid check-in date</span></div>
+      <div class="gg-field"><label for="ggOut">Check-out date *</label><input id="ggOut" type="date"><span class="gg-err">Check-out must be after check-in</span></div>
+      <div class="gg-field full"><label for="ggNights">Number of nights</label><input id="ggNights" type="text" readonly placeholder="Calculated from your dates" tabindex="-1"></div>
+      <div class="gg-field"><label for="ggAdults">Adults *</label><input id="ggAdults" type="number" min="1" max="20" value="1" inputmode="numeric"><span class="gg-err">At least 1 adult</span></div>
+      <div class="gg-field"><label for="ggChildren">Children</label><input id="ggChildren" type="number" min="0" max="20" value="0" inputmode="numeric"><span class="gg-err">Enter 0 or more</span></div>
+      <div class="gg-field full"><label for="ggCountry">Country *</label><select id="ggCountry"></select><span class="gg-err">Select your country</span></div>
+    </div>
+    <p id="ggNewError" class="gg-err" role="alert" hidden style="margin:0 0 12px;color:#dc3545;font-size:.85rem"></p>
+    <button type="submit" class="gg-submit"><i class="fas fa-sign-in-alt"></i> Send request to reception</button></form>
+  </div>
+</div>
+<!-- Guest check-in gate End -->
+<div class="gg-chip" id="guestChip"><div class="gg-chip__in"><span class="gg-chip__text"></span><button type="button" id="ggSignOut"><i class="fas fa-sign-out-alt"></i> Not you? Sign out</button></div></div>
+    <div class="app-container">
+        <!-- Header -->
+        
+
+        <!-- Navigation Tabs -->
+        <nav class="tab-navigation">
+            <button class="tab-btn active" data-tab="food">
+                <i class="fas fa-utensils"></i>
+                <span>Order Food</span>
+            </button>
+            <button class="tab-btn" data-tab="tour">
+                <i class="fas fa-map-marked-alt"></i>
+                <span>Tour</span>
+            </button>
+            <button class="tab-btn" data-tab="laundry">
+                <i class="fas fa-tshirt"></i>
+                <span>Laundry</span>
+            </button>
+            <button class="tab-btn" data-tab="housekeeping">
+                <i class="fas fa-home"></i>
+                <span>Housekeeping</span>
+            </button>
+        </nav>
+
+        <!-- Tab Content -->
+        <main class="tab-content">
+            <!-- Order Food Tab -->
+            <div id="food" class="tab-panel active">
+                <div class="panel-header">
+                    <h2><i class="fas fa-utensils"></i> Order Food</h2>
+                </div>
+
+                <div class="menu-section">
+                    <h3>Menu</h3>
+                    <div class="menu-layout-controls">
+                        <div class="layout-toggle">
+                            <button class="layout-btn active" data-layout="carousel" title="Carousel">⇄</button>
+                            <button class="layout-btn" data-layout="grid" title="Grid">☷</button>
+                        </div>
+                    </div>
+                    <!-- Search Bar -->
+                    <div class="menu-search-container">
+                        <div class="search-wrapper">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" id="menuSearch" class="menu-search-input" placeholder="Search for dishes, categories, ingredients...">
+                            <button class="clear-search" id="clearSearch" style="display: none;">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="menu-categories">
+                        <button class="category-btn active" data-category="All">All</button>
+                        <button class="category-btn" data-category="Ice Drinks">Ice Drinks</button>
+                        <button class="category-btn" data-category="Smoothie">Smoothie</button>
+                        <button class="category-btn" data-category="Cocktail Soda & Juice">Cocktail Soda & Juice</button>
+                        <button class="category-btn" data-category="GRILLS">Grills</button>
+                        <button class="category-btn" data-category="Pasta">Pasta</button>
+                        <button class="category-btn" data-category="Pizza">Pizza</button>
+                        <button class="category-btn" data-category="Sandwich">Sandwich</button>
+                        <button class="category-btn" data-category="Non Coffee">Non Coffee</button>
+                        <button class="category-btn" data-category="Origin Classics">Origin Classics</button>
+                        <button class="category-btn" data-category="Signature Drinks">Signature Drinks</button>
+                        <button class="category-btn" data-category="Soft Drink">Soft Drink</button>
+                    </div>
+
+                    <div class="menu-items">
+
+                        <!-- Ice Drinks -->
+                        <div class="menu-category" data-category="Ice Drinks">
+                            <div class="menu-item">
+                                <img class="item-src" data-item-image src="images/Restaurant/San Sebastian Ice chocolate.jpg"
+                                    alt="San Sebastian Ice chocolate" />
+                                <div class="item-info">
+                                    <h4>San Sebastian Ice chocolate</h4>
+                                    <!-- <p>Eggplant, Parmesan Cheese, minced meat and Mozzarella Cheese.</p> -->
+                                </div>
+                                <div class="item-price">4 $</div>
+                                <button class="add-btn" data-name="San Sebastian Ice chocolate" data-price="4">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+     
+                            <div class="menu-item">
+                                <img class="item-src" data-item-image src="images/Restaurant/Ice Vanilla.jpg"
+                                    alt="Ice Vanilla" />
+                                <div class="item-info">
+                                    <h4>Ice Vanilla</h4>
+                                    <!-- <p>Vanilla ice cream with chocolate sauce.</p> -->
+                                </div>
+                                <div class="item-price">4 $</div>
+                                <button class="add-btn" data-name="Ice Vanilla" data-price="4">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            <div class="menu-item">
+                                <img class="item-src" data-item-image src="images/Restaurant/Ice Latte.jpg"
+                                    alt="Ice Latte" />
+                                <div class="item-info">
+                                    <h4>Ice Latte</h4>
+                                    <!-- <p>Espresso with steamed milk and ice.</p> -->
+                                </div>
+                                <div class="item-price">4 $</div>
+                                <button class="add-btn" data-name="Ice Latte" data-price="4">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            <div class="menu-item">
+                                <img class="item-src" data-item-image src="images/Restaurant/Ice Tea.jpg"
+                                    alt="Ice Tea" />
+                                <div class="item-info">
+                                    <h4>Ice Tea</h4>
+                                    <!-- <p>Black tea with lemon and sugar.</p> -->
+                                </div>
+                                <div class="item-price">4 $</div>
+                                <button class="add-btn" data-name="Ice Tea" data-price="4">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            <div class="menu-item">
+                                <img class="item-src" data-item-image src="images/Restaurant/Ice Spanish.jpg"
+                                    alt="Ice Spanish" />
+                                <div class="item-info">
+                                    <h4>Ice Spanish</h4>
+                                    <!-- <p>Spanish-style ice cream with caramel sauce.</p> -->
+                                </div>
+                                <div class="item-price">4 $</div>
+                                <button class="add-btn" data-name="Ice Spanish" data-price="4">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                    
+
+                                </div>
+
+                                <!-- Smoothie -->
+                                <div class="menu-category" data-category="Smoothie">
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Mango.jpg"
+                                        alt="Mango" />
+                                        <div class="item-info">
+                                            <h4>Mango</h4>
+                                            <!-- <p>Refreshingly delicious mango smoothie with yogurt and honey.</p> -->
+                                        </div>
+                                        <div class="item-price">4 $</div>
+                                        <button class="add-btn" data-name="Mango" data-price="4">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Strawberry.jpg"
+                                        alt="Strawberry" />
+                                        <div class="item-info">
+                                            <h4>Strawberry</h4>
+                                            <!-- <p>Sweet and tangy strawberry smoothie with a creamy texture.</p> -->
+                                        </div>
+                                        <div class="item-price">4 $</div>
+                                        <button class="add-btn" data-name="Strawberry" data-price="4">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                </div>
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Guva.jpg"
+                                        alt="Guva" />
+                                        <div class="item-info">
+                                            <h4>Guva</h4>
+                                            <!-- <p>Crisp and refreshing green apple smoothie with a hint of mint.</p> -->
+                                        </div>
+                                        <div class="item-price">4 $</div>
+                                        <button class="add-btn" data-name="Guva" data-price="4">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Kiwi.jpg"
+                                        alt="Kiwi" />
+                                        <div class="item-info">
+                                            <h4>Kiwi</h4>
+                                            <!-- <p>Vibrant and tangy kiwi smoothie with a tropical twist.</p> -->
+                                        </div>
+                                        <div class="item-price">4 $</div>
+                                        <button class="add-btn" data-name="Kiwi" data-price="4">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Raspberry.jpg"
+                                        alt="Raspberry" />
+                                        <div class="item-info">
+                                            <h4>Raspberry</h4>
+                                            <!-- <p>Sweet and tart raspberry smoothie with a vibrant pink color.</p> -->
+                                        </div>
+                                        <div class="item-price">4 $</div>
+                                        <button class="add-btn" data-name="Raspberry" data-price="4">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Lemon Mint.jpg"
+                                        alt="Lemon Mint" />
+                                        <div class="item-info">
+                                            <h4>Lemon Mint</h4>
+                                            <!-- <p>Refreshing lemon mint smoothie with a zesty and cooling flavor.</p> -->
+                                        </div>
+                                        <div class="item-price">4 $</div>
+                                        <button class="add-btn" data-name="Lemon Mint" data-price="4">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+
+                                </div>
+
+                                <!-- Cocktail Soda & Juice -->
+                                <div class="menu-category active" data-category="Cocktail Soda & Juice">
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Detox.jpg"
+                                        alt="Detox" />
+                                        <div class="item-info">
+                                            <h4>Detox</h4>
+                                            <p>Lemon slices, Ginger slices, Green apple, Fresh mint, Thick Lemon</p>
+                                        </div>
+                                        <div class="item-price">3.5 $</div>
+                                        <button class="add-btn" data-name="Detox" data-price="3.5">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Florida.jpg"
+                                        alt="Florida" />                                        
+                                        <div class="item-info">
+                                            <h4>Florida</h4>
+                                            <p>Mango, strawberry, guava</p>
+                                        </div>
+                                        <div class="item-price">4 $</div>
+                                        <button class="add-btn" data-name="Florida" data-price="4">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Vanilla Soda.jpg"
+                                        alt="Vanilla Soda" />
+                                        <div class="item-info">
+                                            <h4>Vanilla Soda</h4>
+                                            <p>Vanilla ice cream, Soda, Strawberry topping</p>
+                                        </div>
+                                        <div class="item-price">4 $</div>
+                                        <button class="add-btn" data-name="Vanilla Soda" data-price="4">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                        </div>
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Cheesecake Blueberry.jpg"
+                                        alt="Cheesecake Blueberry" />
+                                        <div class="item-info">
+                                            <h4>Blueberry Cheesecake</h4>
+                                            <p>Blueberry cheesecake with a graham cracker crust.</p>
+                                        </div>
+                                        <div class="item-price">4 $</div>
+                                        <button class="add-btn" data-name="Blueberry Cheesecake" data-price="4">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Avenuts.jpg"
+                                        alt="Avenuts" />
+                                        <div class="item-info">
+                                            <h4>Avenuts</h4>
+                                            <p>Avocado, Milk, Ice cream, banana, nuts</p>
+                                        </div>
+                                        <div class="item-price">4 $</div>
+                                        <button class="add-btn" data-name="Avenuts" data-price="4">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Mango Kiwi.jpg"
+                                        alt="Mango Kiwi" />
+                                        <div class="item-info">
+                                            <h4>Mango Kiwi</h4>
+                                            <p>Mango juice, Ice cream, 2 kiwi pieces</p>
+                                        </div>
+                                        <div class="item-price">4 $</div>
+                                        <button class="add-btn" data-name="Mango Kiwi" data-price="4">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                            </p>
+                                        </div>
+                                        
+                                </div>
+
+
+                                <!-- GRILLS -->
+                                 
+                                <div class="menu-category" data-category="GRILLS">
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Chicken Grill.jpg"
+                                        alt="Chicken Grill" />
+                                        <div class="item-info">
+                                            <h4>Chicken Grill</h4>
+                                            <p>Tender grilled chicken seasoned to perfection.</p>
+                                        </div>
+                                        <div class="item-price">12 $</div>
+                                        <button class="add-btn" data-name="Chicken Grill" data-price="12">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Kebab.jpg"
+                                        alt="Kebab" />
+                                        <div class="item-info">
+                                            <h4>Kebab</h4>
+                                            <p>Grilled seasoned meat served hot and full of flavor.</p>
+                                        </div>
+                                        <div class="item-price">14 $</div>
+                                        <button class="add-btn" data-name="Kebab" data-price="14">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Kofta.jpg"
+                                        alt="Kofta" />
+                                        <div class="item-info">
+                                            <h4>Kofta</h4>
+                                            <p>Grilled minced meat seasoned with herbs and spices.</p>
+                                        </div>
+                                        <div class="item-price">12 $</div>
+                                        <button class="add-btn" data-name="Kofta" data-price="12">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                     <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/CHICKEN SHISH.jpg"
+                                        alt="Chicken Shish" />
+                                        <div class="item-info">
+                                            <h4>1/2 Chicken Shish</h4>
+                                            <p>Half Shish chicken skewers seasoned with special spices and flame-grilled to perfection.</p>
+                                        </div>
+                                        <div class="item-price">14 $</div>
+                                        <button class="add-btn" data-name="Chicken Shish" data-price="14">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Mix Grill.jpg"
+                                        alt="Mix Grill" />
+                                        <div class="item-info">
+                                            <h4>Mix Grill</h4>
+                                            <p>Grilled kofta, grilled kabab, grilled chicken and shish taouk.</p>
+                                        </div>
+                                        <div class="item-price">15 $</div>
+                                        <button class="add-btn" data-name="Mix Grill" data-price="15">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                     <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Fried Shrimp.jpg"
+                                        alt="Fried Shrimp" />
+                                        <div class="item-info">
+                                            <h4>Fried Shrimp</h4>
+                                            <p>Crispy golden shrimp, lightly seasoned and fried to perfection.</p>
+                                        </div>
+                                        <div class="item-price">16 $</div>
+                                        <button class="add-btn" data-name="Fried Shrimp" data-price="16">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                       <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/mullet fish.jpg"
+                                        alt="Mullet Fish" />
+                                        <div class="item-info">
+                                            <h4>Mullet Fish</h4>
+                                            <p>Fresh mullet fish grilled to perfection with a light blend of herbs and spices.</p>
+                                        </div>
+                                        <div class="item-price">17.5 $</div>
+                                        <button class="add-btn" data-name="Mullet Fish" data-price="17.5">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Pigeon.jpg"
+                                        alt="Pigeon" />
+                                        <div class="item-info">
+                                            <h4>Pigeon</h4>
+                                            <p>Pigeon stuffed with rice flavored with Egyptian spices.</p>
+                                        </div>
+                                        <div class="item-price">9.5 $</div>
+                                        <button class="add-btn" data-name="Pigeon" data-price="9.5">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                      <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Crispy.jpg"
+                                        alt="Crispy" />
+                                        <div class="item-info">
+                                            <h4>Crispy</h4>
+                                            <p>Perfectly grilled favorites with a crispy, flavorful finish.</p>
+                                        </div>
+                                        <div class="item-price">9.5 $</div>
+                                        <button class="add-btn" data-name="Crispy" data-price="9.5">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                     <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Liver.jpg"
+                                        alt="Liver" />
+                                        <div class="item-info">
+                                            <h4>Liver</h4>
+                                            <p>Tender grilled liver seasoned with rich spices and served hot.</p>
+                                        </div>
+                                        <div class="item-price">9.5 $</div>
+                                        <button class="add-btn" data-name="Liver" data-price="9.5">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Chicken Pane.jpg"
+                                        alt="Chicken Pane" />
+                                        <div class="item-info">
+                                            <h4>Chicken Pane</h4>
+                                            <p>Crispy breaded chicken grilled and served with rich flavor.</p>
+                                        </div>
+                                        <div class="item-price">9.5 $</div>
+                                        <button class="add-btn" data-name="Chicken Pane" data-price="9.5">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Extra Potatoes or Rice.jpg"
+                                        alt="Extra Potatoes or Rice" />
+                                        <div class="item-info">
+                                            <h4>Extra Potatoes or Rice</h4>
+                                            <p>A side of crispy potatoes or fluffy rice to complete your meal.</p>
+                                        </div>
+                                        <div class="item-price">3.5 $</div>
+                                        <button class="add-btn" data-name="Extra Potatoes or Rice" data-price="3.5">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>   
+                                </div>
+
+                                <!-- Pasta -->
+                                <div class="menu-category" data-category="Pasta">
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Alfredo Sauce.jpg"
+                                        alt="Alfredo Sauce" />
+                                        <div class="item-info">
+                                            <h4>Alfredo Sauce</h4>
+                                            <p>Chicken, mushroom, white sauce, sour cream & Parmesan Cheese.</p>
+                                        </div>
+                                        <div class="item-price">8 $</div>
+                                        <button class="add-btn" data-name="Alfredo Sauce" data-price="8">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/SeaFood Pasta.jpg"
+                                        alt="SeaFood Pasta" />
+                                        <div class="item-info">
+                                            <h4>SeaFood</h4>
+                                            <p>Fresh shrimp and mixed seafood in a creamy garlic white sauce, finished with Parmesan cheese.</p>
+                                        </div>
+                                        <div class="item-price">10 $</div>
+                                        <button class="add-btn" data-name="SeaFood Pasta" data-price="10">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Arpita.jpg"
+                                        alt="Arpita" />
+                                        <div class="item-info">
+                                            <h4>Arpita</h4>
+                                            <p>Arpita Pasta is a creamy, flavorful dish made with perfectly cooked pasta and rich, aromatic sauce.</p>
+                                        </div>
+                                        <div class="item-price">5 $</div>
+                                        <button class="add-btn" data-name="Arpita" data-price="5">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Spaghetti.jpg"
+                                        alt="Spaghetti" />
+                                        <div class="item-info">
+                                            <h4>Spaghetti</h4>
+                                            <p>Classic spaghetti tossed in a rich, flavorful sauce and finished with a touch of Parmesan cheese.</p>
+                                        </div>
+                                        <div class="item-price">5 $</div>
+                                        <button class="add-btn" data-name="Spaghetti" data-price="5">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Mix Cheese.jpg"
+                                        alt="Mix Cheese" />
+                                        <div class="item-info">
+                                            <h4>Mix Cheese</h4>
+                                            <p>Creamy pasta with melted mixed cheeses.</p>
+                                        </div>
+                                        <div class="item-price">7 $</div>
+                                        <button class="add-btn" data-name="Mix Cheese" data-price="7">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    </div>
+
+
+                                <!-- Pizza -->
+                                <div class="menu-category" data-category="Pizza">
+
+                                    <div class="menu-item pizza-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/margherita.jpg" alt="Margherita" />
+                                        <div class="item-info">
+                                            <h4>Margherita</h4>
+                                            <!-- <p>Mozzarella cheese, fresh thyme and tomato sauce.</p> -->
+                                            <div class="pizza-size-selector">
+                                                <button class="size-btn active" data-size="Small" data-base-name="Margherita" data-price="7">Small</button>
+                                                <button class="size-btn" data-size="Large" data-base-name="Margherita" data-price="9">Large</button>
+                                            </div>
+                                        </div>
+                                        <div class="item-price">7 $</div>
+                                        <button class="add-btn" data-name="Margherita (Small)" data-price="7">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+
+                                      <div class="menu-item pizza-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Mix Cheese Pizza.jpg" alt="Mix Cheese Pizza" />
+                                        <div class="item-info">
+                                            <h4>Mix Cheese</h4>
+                                            <!-- <p>Pizza topped with a rich blend of melted cheeses.</p> -->
+                                            <div class="pizza-size-selector">
+                                                <button class="size-btn active" data-size="Small" data-base-name="Mix Cheese" data-price="8">Small</button>
+                                                <button class="size-btn" data-size="Large" data-base-name="Mix Cheese" data-price="10">Large</button>
+                                            </div>
+                                        </div>
+                                        <div class="item-price">8 $</div>
+                                        <button class="add-btn" data-name="Mix Cheese (Small)" data-price="8">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+
+                                    
+
+                                    <div class="menu-item pizza-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/seafood pizza.jpg" alt="Seafood" />
+                                        <div class="item-info">
+                                            <h4>Seafood</h4>
+                                            <!-- <p>Mozzarella cheese, shrimp, calamari, sweet peppers and tomato sauce.</p> -->
+                                            <div class="pizza-size-selector">
+                                                <button class="size-btn active" data-size="Small" data-base-name="Seafood" data-price="10">Small</button>
+                                                <button class="size-btn" data-size="Large" data-base-name="Seafood Large" data-price="13">Large</button>
+                                            </div>
+                                        </div>
+                                        <div class="item-price">10 $</div>
+                                        <button class="add-btn" data-name="Seafood (Small)" data-price="10">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="menu-item pizza-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Pepperoni.jpg" alt="Pepperoni" />
+                                        <div class="item-info">
+                                            <h4>Pepperoni</h4>
+                                            <!-- <p>Mozzarella cheese, pepperoni, pepper and tomato sauce.</p> -->
+                                            <div class="pizza-size-selector">
+                                                <button class="size-btn active" data-size="Small" data-base-name="Pepperoni" data-price="7">Small</button>
+                                                <button class="size-btn" data-size="Large" data-base-name="Pepperoni Large" data-price="9">Large</button>
+                                            </div>
+                                        </div>
+                                        <div class="item-price">7 $</div>
+                                        <button class="add-btn" data-name="Pepperoni (Small)" data-price="7">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="menu-item pizza-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Chicken.jpg" alt="Chicken" />
+                                        <div class="item-info">
+                                            <h4>Chicken</h4>
+                                            <!-- <p>Mozzarella cheese, chicken, sweet pepper, olives and tomato sauce.</p> -->
+                                            <div class="pizza-size-selector">
+                                                <button class="size-btn active" data-size="Small" data-base-name="Chicken" data-price="8">Small</button>
+                                                <button class="size-btn" data-size="Large" data-base-name="Chicken Large" data-price="10">Large</button>
+                                            </div>
+                                        </div>
+                                        <div class="item-price">8 $</div>
+                                        <button class="add-btn" data-name="Chicken (Small)" data-price="8">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="menu-item pizza-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Meat.jpg" alt="Meat" />
+                                        <div class="item-info">
+                                            <h4>Meat</h4>
+                                            <!-- <p>Mozzarella cheese, smoked turkey, smoked beef, mushroom and tomato sauce.</p> -->
+                                            <div class="pizza-size-selector">
+                                                <button class="size-btn active" data-size="Small" data-base-name="Meat" data-price="8">Small</button>
+                                                <button class="size-btn" data-size="Large" data-base-name="Meat Large" data-price="10">Large</button>
+                                            </div>
+                                        </div>
+                                        <div class="item-price">8 $</div>
+                                        <button class="add-btn" data-name="Meat (Small)" data-price="8">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+
+                                </div>
+
+                                <!-- Sandwich -->
+                                <div class="menu-category" data-category="Sandwich">
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Fajita Chicken.jpg"
+                                        alt="Fajita Chicken" />
+                                        <div class="item-info">
+                                            <h4>Fajita Chicken</h4>
+                                            <p>Sandwiche served with potatoes </p>
+                                        </div>
+                                        <div class="item-price">6 $</div>
+                                        <button class="add-btn" data-name="Fajita Chicken" data-price="6">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Fajita Meat.jpg"
+                                        alt="Fajita Meat" />
+                                        <div class="item-info">
+                                            <h4>Fajita Meat</h4>
+                                            <p>Sandwiche served with potatoes</p>
+                                        </div>
+                                        <div class="item-price">6 $</div>
+                                        <button class="add-btn" data-name="Fajita Meat" data-price="6">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Grilled Kofta.jpg"
+                                        alt="Grilled Kofta" />
+                                        <div class="item-info">
+                                            <h4>Grilled Kofta</h4>
+                                            <p>Sandwiche served with potatoes</p>
+                                        </div>
+                                        <div class="item-price">5 $</div>
+                                        <button class="add-btn" data-name="Grilled Kofta" data-price="5">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    
+                                        <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Beef Burger.jpg"
+                                        alt="Beef Burger" />
+                                        <div class="item-info">
+                                            <h4>Beef Burger</h4>
+                                            <p>Sandwiche served with potatoes</p>
+                                        </div>
+                                        <div class="item-price">5 $</div>
+                                        <button class="add-btn" data-name="Beef Burger" data-price="5">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+
+                                </div>
+
+                                <!-- Non Coffee -->
+                                <div class="menu-category" data-category="Non Coffee">
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Blueberry Shake.jpg"
+                                        alt="Blueberry Shake" />
+                                        <div class="item-info">
+                                            <h4>Blueberry Shake</h4>
+                                            <!-- <p></p> -->
+                                        </div>
+                                        <div class="item-price">3.5 $</div>
+                                        <button class="add-btn" data-name="Blueberry Shake" data-price="3.5">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Hot Chocolate.jpg"
+                                        alt="Hot Chocolate" />
+                                        <div class="item-info">
+                                            <h4>Hot Chocolate</h4>
+                                            <!-- <p></p> -->
+                                        </div>
+                                        <div class="item-price">3 $</div>
+                                        <button class="add-btn" data-name="Hot Chocolate" data-price="3">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Frappe.jpg"
+                                        alt="Frappe" />
+                                        <div class="item-info">
+                                            <h4>Frappe</h4>
+                                            <p>chocolate, vanilla, Carmel, nutella, Sneakers</p>
+                                        </div>
+                                        <div class="item-price">3 $</div>
+                                        <button class="add-btn" data-name="Frappe" data-price="3">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Hot Nuts.jpg"
+                                        alt="Hot Nuts" />
+                                        <div class="item-info">
+                                            <h4>Hot Nuts</h4>
+                                            <!-- <p></p> -->
+                                        </div>
+                                        <div class="item-price">3.5 $</div>
+                                        <button class="add-btn" data-name="Hot Nuts" data-price="3.5">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                      <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Tea.jpg"
+                                        alt="Tea" />
+                                        <div class="item-info">
+                                            <h4>Tea</h4>
+                                            <!-- <p></p> -->
+                                        </div>
+                                        <div class="item-price">2 $</div>
+                                        <button class="add-btn" data-name="Tea" data-price="2">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                  
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Karak Tea.jpg"
+                                        alt="Karak Tea" />
+                                        <div class="item-info">
+                                            <h4>Karak Tea</h4>
+                                            <!-- <p></p> -->
+                                        </div>
+                                        <div class="item-price">2.5 $</div>
+                                        <button class="add-btn" data-name="Karak Tea" data-price="2.5">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                     <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Green Tea.jpg"
+                                        alt="Green Tea" />
+                                        <div class="item-info">
+                                            <h4>Green Tea</h4>
+                                            <!-- <p></p> -->
+                                        </div>
+                                        <div class="item-price">2 $</div>
+                                        <button class="add-btn" data-name="Green Tea" data-price="2">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                     <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Milk Orchid.jpg"
+                                        alt="Milk Orchid" />
+                                        <div class="item-info">
+                                            <h4>Milk Orchid</h4>
+                                            <!-- <p></p> -->
+                                        </div>
+                                        <div class="item-price">3 $</div>
+                                        <button class="add-btn" data-name="Milk Orchid" data-price="3">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                      <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Orange Herbs.jpg"
+                                        alt="Orange Herbs" />
+                                        <div class="item-info">
+                                            <h4>Orange Herbs</h4>
+                                            <!-- <p></p> -->
+                                        </div>
+                                        <div class="item-price">2.5 $</div>
+                                        <button class="add-btn" data-name="Orange Herbs" data-price="2.5">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Hot Cider.jpg"
+                                        alt="Hot Cider" />
+                                        <div class="item-info">
+                                            <h4>Hot Cider</h4>
+                                            <!-- <p></p> -->
+                                        </div>
+                                        <div class="item-price">2.5 $</div>
+                                        <button class="add-btn" data-name="Hot Cider" data-price="2.5">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Origin Classics -->
+                                <div class="menu-category" data-category="Origin Classics">
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Espresso.jpg"
+                                        alt="Espresso" />
+                                        <div class="item-info">
+                                            <h4>Espresso</h4>
+                                            <p></p>
+                                        </div>
+                                        <div class="item-price">2 $</div>
+                                        <button class="add-btn" data-name="Espresso" data-price="2">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                        <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Americano.jpg"
+                                        alt="Americano" />
+                                        <div class="item-info">
+                                            <h4>Americano</h4>
+                                            <!-- <p></p> -->
+                                        </div>
+                                        <div class="item-price">2.5 $</div>
+                                        <button class="add-btn" data-name="Americano" data-price="2.5">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Macchiato.jpg"
+                                        alt="Macchiato" />
+                                        <div class="item-info">
+                                            <h4>Macchiato</h4>
+                                            <!-- <p></p> -->
+                                        </div>
+                                        <div class="item-price">2.5 $</div>
+                                        <button class="add-btn" data-name="Macchiato" data-price="2.5">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Latte.jpg"
+                                        alt="Latte" />
+                                        <div class="item-info">
+                                            <h4>Latte</h4>
+                                            <!-- <p></p> -->
+                                        </div>
+                                        <div class="item-price">3 $</div>
+                                        <button class="add-btn" data-name="Latte" data-price="3">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Flat White.jpg"
+                                        alt="Flat White" />
+                                        <div class="item-info">
+                                            <h4>Flat White</h4>
+                                            <!-- <p></p> -->
+                                        </div>
+                                        <div class="item-price">2.5 $</div>
+                                        <button class="add-btn" data-name="Flat White" data-price="2.5">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    
+                                        <div class="menu-item">
+                                            <img class="item-src" data-item-image src="images/Restaurant/Nescafe.jpg"
+                                            alt="Nescafe" />
+                                            <div class="item-info">
+                                                <h4>Nescafe</h4>
+                                                <!-- <p></p> -->
+                                            </div>
+                                            <div class="item-price">2.5 $</div>
+                                            <button class="add-btn" data-name="Nescafe" data-price="2.5">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </div>
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Cappucino.jpg"
+                                        alt="Cappucino" />
+                                        <div class="item-info">
+                                            <h4>Cappucino</h4>
+                                            <!-- <p></p> -->
+                                        </div>
+                                        <div class="item-price">3 $</div>
+                                        <button class="add-btn" data-name="Cappucino" data-price="3">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Turkish Coffee Double.jpg"
+                                        alt="Turkish Coffee" />
+                                        <div class="item-info">
+                                            <h4>Turkish Coffee</h4>
+                                            <p></p>
+                                        </div>
+                                        <div class="item-price">2 $</div>
+                                        <button class="add-btn" data-name="Turkish Coffee" data-price="2.5">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Signature Drinks -->
+                                <div class="menu-category" data-category="Signature Drinks">
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Salted Caramel Latte.jpg"
+                                        alt="Salted Caramel Latte" />
+                                        <div class="item-info">
+                                            <h4>Salted Caramel Latte</h4>
+                                            <p></p>
+                                        </div>
+                                        <div class="item-price">4 $</div>
+                                        <button class="add-btn" data-name="Salted Caramel Latte" data-price="4">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Spanish Latte.jpg"
+                                        alt="Spanish Latte" />
+                                        <div class="item-info">
+                                            <h4>Spanish Latte</h4>
+                                            <p></p>
+                                        </div>
+                                        <div class="item-price">4 $</div>
+                                        <button class="add-btn" data-name="Spanish Latte" data-price="4">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Caramel Macchiato.jpg"
+                                        alt="Caramel Macchiato" />
+                                        <div class="item-info">
+                                            <h4>Caramel Macchiato</h4>
+                                            <p></p>
+                                        </div>
+                                        <div class="item-price">4 $</div>
+                                        <button class="add-btn" data-name="Caramel Macchiato" data-price="4">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Hazelnut Coffee.jpg"
+                                        alt="Hazelnut Coffee" />
+                                        <div class="item-info">
+                                            <h4>Hazelnut Coffee</h4>
+                                            <p></p>
+                                        </div>
+                                        <div class="item-price">3 $</div>
+                                        <button class="add-btn" data-name="Hazelnut Coffee" data-price="3">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Mocha.jpg"
+                                        alt="Mocha" />
+                                        <div class="item-info">
+                                            <h4>Mocha</h4>
+                                            <p></p>
+                                        </div>
+                                        <div class="item-price">3 $</div>
+                                        <button class="add-btn" data-name="Mocha" data-price="3">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+ <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/hocha.jpg"
+                                        alt="Hocha" />
+                                        <div class="item-info">
+                                            <h4>Hocha</h4>
+                                            <p></p>
+                                        </div>
+                                        <div class="item-price">3 $</div>
+                                        <button class="add-btn" data-name="Hocha" data-price="3">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Hot Nuts.jpg"
+                                        alt="Hot Nuts" />
+                                        <div class="item-info">
+                                            <h4>Hot Nuts</h4>
+                                            <!-- <p></p> -->
+                                        </div>
+                                        <div class="item-price">4 $</div>
+                                        <button class="add-btn" data-name="Hot Nuts" data-price="4">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                   
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Frapuccino.jpg"
+                                        alt="Frapuccino" />
+                                        <div class="item-info">
+                                            <h4>Frapuccino</h4>
+                                            <p></p>
+                                        </div>
+                                        <div class="item-price">3 $</div>
+                                        <button class="add-btn" data-name="Frapuccino" data-price="3">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/White Mocha.jpg"
+                                        alt="White Mocha" />
+                                        <div class="item-info">
+                                            <h4>White Mocha</h4>
+                                            <!-- <p></p> -->
+                                        </div>
+                                        <div class="item-price">3 $</div>
+                                        <button class="add-btn" data-name="White Mocha" data-price="3">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                   
+                                   
+                                </div>
+
+
+                                <!-- Soft Drink -->
+                                <div class="menu-category" data-category="Soft Drink">
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Small Water.jpg"
+                                        alt="Small Water" />
+                                        <div class="item-info">
+                                            <h4>Small Water</h4>
+                                            <p></p>
+                                        </div>
+                                        <div class="item-price">2 $</div>
+                                        <button class="add-btn" data-name="Small Water" data-price="2">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                     <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Coca-Cola.jpg"
+                                        alt="Coca-Cola" />
+                                        <div class="item-info">
+                                            <h4>Coca-Cola</h4>
+                                            <p></p>
+                                        </div>
+                                        <div class="item-price">2 $</div>
+                                        <button class="add-btn" data-name="Coca-Cola" data-price="2">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Coca-Cola Zero.jpg"
+                                        alt="Coca-Cola Zero" />
+                                        <div class="item-info">
+                                            <h4>Coca-Cola Zero</h4>
+                                            <p></p>
+                                        </div>
+                                        <div class="item-price">2 $</div>
+                                        <button class="add-btn" data-name="Coca-Cola Zero" data-price="2">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                 <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/seven.jpg"
+                                        alt="Seven" />
+                                        <div class="item-info">
+                                            <h4>Seven</h4>
+                                            <p></p>
+                                        </div>
+                                        <div class="item-price">2 $</div>
+                                        <button class="add-btn" data-name="Seven" data-price="2">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Seven Diet.jpg"
+                                        alt="Seven Diet" />
+                                        <div class="item-info">
+                                            <h4>Seven Diet</h4>
+                                            <p></p>
+                                        </div>
+                                        <div class="item-price">2 $</div>
+                                        <button class="add-btn" data-name="Seven Diet" data-price="2">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                      <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Birell.jpg"
+                                        alt="Birell" />
+                                        <div class="item-info">
+                                            <h4>Birell</h4>
+                                            <p></p>
+                                        </div>
+                                        <div class="item-price">2.5 $</div>
+                                        <button class="add-btn" data-name="Birell" data-price="2.5">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                     <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/soda drink.jpg"
+                                        alt="Soda Drink" />
+                                        <div class="item-info">
+                                            <h4>Soda Drink</h4>
+                                            <p></p>
+                                        </div>
+                                        <div class="item-price">2.5 $</div>
+                                        <button class="add-btn" data-name="Soda Drink" data-price="2.5">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                     <div class="menu-item">
+                                        <img class="item-src" data-item-image src="images/Restaurant/Red Bull.jpg"
+                                        alt="Red Bull" />
+                                        <div class="item-info">
+                                            <h4>Red Bull</h4>
+                                            <p>With any flavor</p>
+                                        </div>
+                                        <div class="item-price">4 $</div>
+                                        <button class="add-btn" data-name="Red Bull" data-price="4">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div class="cart-section">
+                            <h3>Your Order</h3>
+
+                            <div class="form-group">
+                                <label for="customerName">Your Name *</label>
+                                <input type="text" id="customerName" required placeholder="Enter your name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="roomNumber">Room Number *</label>
+                                <input type="text" id="roomNumber" required placeholder="Enter your room number">
+                            </div>
+
+                            <div class="cart-items" id="cartItems">
+                                <p class="empty-cart">Your cart is empty</p>
+                            </div>
+                            <div class="cart-total">
+                                <strong>Total: <span id="totalPrice">0.00</span> $</strong>
+                            </div>
+
+                            <button class="order-btn" id="placeOrderBtn" disabled>
+                                <i class="fas fa-utensils"></i> Order Now
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Tour Organization Tab -->
+                    <div id="tour" class="tab-panel">
+                        <div class="panel-header">
+                            <h2><i class="fas fa-map-marked-alt"></i> Discover Egypt</h2>
+                            <p class="panel-subtitle">Explore ancient wonders and breathtaking experiences</p>
+                        </div>
+
+                        <!-- Tour Search and Filters -->
+                        <div class="tour-controls">
+                            <div class="tour-search-wrapper">
+                                <i class="fas fa-search"></i>
+                                <input type="text" id="tourSearch" placeholder="Search tours..." class="tour-search-input">
+                            </div>
+                            
+                            <div class="tour-filters">
+                                <button class="tour-filter-btn active" data-filter="all">
+                                    <i class="fas fa-globe"></i> All Tours
+                                </button>
+                                <button class="tour-filter-btn" data-filter="historical">
+                                    <i class="fas fa-landmark"></i> Historical
+                                </button>
+                                <button class="tour-filter-btn" data-filter="adventure">
+                                    <i class="fas fa-hiking"></i> Adventure
+                                </button>
+                                <button class="tour-filter-btn" data-filter="relaxation">
+                                    <i class="fas fa-spa"></i> Relaxation
+                                </button>
+                                <button class="tour-filter-btn" data-filter="cultural">
+                                    <i class="fas fa-mosque"></i> Cultural
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Tours Grid -->
+                        <div class="tours-grid" id="toursGrid">
+                            <!-- Tour cards will be generated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Tour Detail Modal -->
+                    <div id="tourDetailModal" class="tour-modal">
+                        <div class="tour-modal-content">
+                            <button class="tour-modal-close" onclick="closeTourDetail()">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            
+                            <div class="tour-detail-container">
+                                <div class="tour-detail-gallery">
+                                    <div class="tour-main-image">
+                                        <img id="tourMainImage" src="" alt="">
+                                    </div>
+                                    <div class="gallery-progress-track">
+                                      <div class="gallery-progress-bar" id="galleryProgressBar"></div>
+                                    </div>
+                                    <div class="tour-gallery-nav">
+                                        <button class="gallery-nav-btn prev" onclick="prevTourImage()" aria-label="Previous image">
+                                            <span class="gallery-btn-line"></span>
+                                            <i class="fas fa-chevron-left"></i>
+                                        </button>
+                                        <div class="gallery-nav-center">
+                                            <div class="gallery-nav-counter">
+                                                <span id="galleryCurrentIndex">01</span>
+                                                <span class="gallery-nav-slash">/</span>
+                                                <span id="galleryTotalCount">01</span>
+                                            </div>
+                                            <div class="gallery-dots" id="galleryDots"></div>
+                                        </div>
+                                        <button class="gallery-nav-btn next" onclick="nextTourImage()" aria-label="Next image">
+                                            <i class="fas fa-chevron-right"></i>
+                                            <span class="gallery-btn-line"></span>
+                                        </button>
+                                    </div>
+                                    <div class="tour-thumbnail-gallery" id="tourThumbnails">
+                                        <!-- Thumbnails will be generated -->
+                                    </div>
+                                </div>
+                                
+                                <div class="tour-detail-info">
+                                    <div class="tour-detail-header">
+                                        <h2 id="tourDetailTitle"></h2>
+                                        <div class="tour-detail-meta">
+                                            <span class="tour-duration-badge" id="tourDetailDuration"></span>
+                                            <span class="tour-category-badge" id="tourDetailCategory"></span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="tour-detail-description" id="tourDetailDescription">
+                                    </div>
+                                    
+                                    <div class="tour-highlights" id="tourHighlights">
+                                    </div>
+                                    
+                                    <div class="tour-inclusions" id="tourInclusions">
+                                    </div>
+                                    
+                                    <button class="book-tour-btn" onclick="showTourBooking()">
+                                        <i class="fas fa-calendar-check"></i> Book This Tour
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tour Booking Modal -->
+                    <div id="tourBookingModal" class="tour-modal">
+                        <div class="tour-modal-content booking-modal">
+                            <button class="tour-modal-close" onclick="closeTourBooking()">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            
+                            <div class="booking-header">
+                                <h2><i class="fas fa-calendar-check"></i> Book Your Tour</h2>
+                                <p class="selected-tour-name" id="selectedTourName"></p>
+                            </div>
+                            
+                            <form class="tour-booking-form" id="tourBookingForm">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="tourCustomerName">Your Name *</label>
+                                        <input type="text" id="tourCustomerName" name="tourCustomerName" required
+                                            placeholder="Enter your name">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="tourRoomNumber">Room Number *</label>
+                                        <input type="text" id="tourRoomNumber" name="tourRoomNumber" required
+                                            placeholder="Enter your room number">
+                                    </div>
+                                </div>
+
+                                <input type="hidden" id="selectedTourId" name="selectedTourId">
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="tourDate">Date *</label>
+                                        <input type="date" id="tourDate" name="tourDate" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="tourTime">Preferred Time *</label>
+                                        <input type="time" id="tourTime" name="tourTime" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="tourParticipants">Number of Participants *</label>
+                                    <input type="number" id="tourParticipants" name="tourParticipants" min="1" max="50" required
+                                        placeholder="Number of people">
+                                </div>
+
+                                <div class="form-group checkbox-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="tourNeedGuide" name="tourNeedGuide">
+                                        <span class="checkmark"></span>
+                                        I need a tour guide
+                                    </label>
+                                </div>
+
+                                <div class="form-group" id="tourGuideLanguageGroup" style="display: none;">
+                                    <label for="tourGuideLanguage">Preferred Guide Language</label>
+                                    <select id="tourGuideLanguage" name="tourGuideLanguage">
+                                        <option value="">Select language</option>
+                                        <option value="English">English</option>
+                                        <option value="Arabic">Arabic</option>
+                                        <option value="French">French</option>
+                                        <option value="German">German</option>
+                                        <option value="Spanish">Spanish</option>
+                                        <option value="Italian">Italian</option>
+                                        <option value="Chinese">Chinese</option>
+                                        <option value="Japanese">Japanese</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="tourSpecialRequests">Special Requests</label>
+                                    <textarea id="tourSpecialRequests" name="tourSpecialRequests" rows="4"
+                                        placeholder="Any special requirements, dietary restrictions, or accessibility needs..."></textarea>
+                                </div>
+
+                                <div class="booking-actions">
+                                    <button type="button" class="cancel-booking-btn" onclick="closeTourBooking()">
+                                        <i class="fas fa-times"></i> Cancel
+                                    </button>
+                                    <button type="submit" class="submit-booking-btn">
+                                        <i class="fas fa-paper-plane"></i> Submit Booking
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Laundry Tab -->
+                    <div id="laundry" class="tab-panel">
+                        <div class="panel-header">
+                            <h2><i class="fas fa-tshirt"></i> Laundry</h2>
+                        </div>
+
+                        <form class="service-form laundry-form" id="laundryForm">
+                            <div class="form-group">
+                                <label for="laundryCustomerName">Your Name *</label>
+                                <input type="text" id="laundryCustomerName" name="laundryCustomerName" required
+                                    placeholder="Enter your name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="laundryRoomNumber">Room Number *</label>
+                                <input type="text" id="laundryRoomNumber" name="laundryRoomNumber" required
+                                    placeholder="Enter your room number">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="laundry-items-label">Laundry Items</label>
+                                <div class="laundry-cards-wrapper">
+                                    <!-- Service Legend -->
+                                    <div class="laundry-legend">
+                                        <span class="legend-badge legend-wash"><i class="fas fa-tint"></i> Laundry</span>
+                                        <span class="legend-badge legend-dry"><i class="fas fa-wind"></i> Dry Cleaning</span>
+                                        <span class="legend-badge legend-press"><i class="fas fa-fire-alt"></i> Pressing</span>
+                                    </div>
+                                    <div class="laundry-cards-list">
+                                        <div class="laundry-card laundry-row" data-item="Shirt / Blouse">
+                                            <div class="laundry-card-left">
+                                                <div class="laundry-item-icon"><i class="fas fa-tshirt"></i></div>
+                                                <div class="laundry-item-name">Shirt / Blouse</div>
+                                            </div>
+                                            <div class="laundry-card-center">
+                                                <label class="laundry-pill legend-wash"><input type="checkbox" class="laundry-service-checkbox" data-service="Laundry" data-price="20"><i class="fas fa-tint"></i><span> 20 L.E</span></label>
+                                                <label class="laundry-pill legend-dry"><input type="checkbox" class="laundry-service-checkbox" data-service="Dry Cleaning" data-price="40"><i class="fas fa-wind"></i><span> 40 L.E</span></label>
+                                                <label class="laundry-pill legend-press"><input type="checkbox" class="laundry-service-checkbox" data-service="Pressing" data-price="15"><i class="fas fa-fire-alt"></i><span> 15 L.E</span></label>
+                                            </div>
+                                            <div class="laundry-card-right">
+                                                <div class="laundry-qty-group">
+                                                    <button type="button" class="qty-dec">−</button>
+                                                    <input type="number" class="laundry-qty-input" min="0" value="0">
+                                                    <button type="button" class="qty-inc">+</button>
+                                                </div>
+                                                <div class="laundry-row-total">0.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="laundry-card laundry-row" data-item="T-Shirt">
+                                            <div class="laundry-card-left">
+                                                <div class="laundry-item-icon"><i class="fas fa-tshirt"></i></div>
+                                                <div class="laundry-item-name">T-Shirt</div>
+                                            </div>
+                                            <div class="laundry-card-center">
+                                                <label class="laundry-pill legend-wash"><input type="checkbox" class="laundry-service-checkbox" data-service="Laundry" data-price="20"><i class="fas fa-tint"></i><span> 20 L.E</span></label>
+                                                <label class="laundry-pill legend-dry"><input type="checkbox" class="laundry-service-checkbox" data-service="Dry Cleaning" data-price="40"><i class="fas fa-wind"></i><span> 40 L.E</span></label>
+                                                <label class="laundry-pill legend-press"><input type="checkbox" class="laundry-service-checkbox" data-service="Pressing" data-price="15"><i class="fas fa-fire-alt"></i><span> 15 L.E</span></label>
+                                            </div>
+                                            <div class="laundry-card-right">
+                                                <div class="laundry-qty-group">
+                                                    <button type="button" class="qty-dec">−</button>
+                                                    <input type="number" class="laundry-qty-input" min="0" value="0">
+                                                    <button type="button" class="qty-inc">+</button>
+                                                </div>
+                                                <div class="laundry-row-total">0.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="laundry-card laundry-row" data-item="Pullover">
+                                            <div class="laundry-card-left">
+                                                <div class="laundry-item-icon"><i class="fas fa-tshirt"></i></div>
+                                                <div class="laundry-item-name">Pullover</div>
+                                            </div>
+                                            <div class="laundry-card-center">
+                                                <label class="laundry-pill legend-wash"><input type="checkbox" class="laundry-service-checkbox" data-service="Laundry" data-price="25"><i class="fas fa-tint"></i><span> 25 L.E</span></label>
+                                                <label class="laundry-pill legend-dry"><input type="checkbox" class="laundry-service-checkbox" data-service="Dry Cleaning" data-price="50"><i class="fas fa-wind"></i><span> 50 L.E</span></label>
+                                                <label class="laundry-pill legend-press"><input type="checkbox" class="laundry-service-checkbox" data-service="Pressing" data-price="20"><i class="fas fa-fire-alt"></i><span> 20 L.E</span></label>
+                                            </div>
+                                            <div class="laundry-card-right">
+                                                <div class="laundry-qty-group">
+                                                    <button type="button" class="qty-dec">−</button>
+                                                    <input type="number" class="laundry-qty-input" min="0" value="0">
+                                                    <button type="button" class="qty-inc">+</button>
+                                                </div>
+                                                <div class="laundry-row-total">0.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="laundry-card laundry-row" data-item="Trousers / Skirt">
+                                            <div class="laundry-card-left">
+                                                <div class="laundry-item-icon"><i class="fas fa-tshirt"></i></div>
+                                                <div class="laundry-item-name">Trousers / Skirt</div>
+                                            </div>
+                                            <div class="laundry-card-center">
+                                                <label class="laundry-pill legend-wash"><input type="checkbox" class="laundry-service-checkbox" data-service="Laundry" data-price="25"><i class="fas fa-tint"></i><span> 25 L.E</span></label>
+                                                <label class="laundry-pill legend-dry"><input type="checkbox" class="laundry-service-checkbox" data-service="Dry Cleaning" data-price="50"><i class="fas fa-wind"></i><span> 50 L.E</span></label>
+                                                <label class="laundry-pill legend-press"><input type="checkbox" class="laundry-service-checkbox" data-service="Pressing" data-price="20"><i class="fas fa-fire-alt"></i><span> 20 L.E</span></label>
+                                            </div>
+                                            <div class="laundry-card-right">
+                                                <div class="laundry-qty-group">
+                                                    <button type="button" class="qty-dec">−</button>
+                                                    <input type="number" class="laundry-qty-input" min="0" value="0">
+                                                    <button type="button" class="qty-inc">+</button>
+                                                </div>
+                                                <div class="laundry-row-total">0.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="laundry-card laundry-row" data-item="Shorts">
+                                            <div class="laundry-card-left">
+                                                <div class="laundry-item-icon"><i class="fas fa-tshirt"></i></div>
+                                                <div class="laundry-item-name">Shorts</div>
+                                            </div>
+                                            <div class="laundry-card-center">
+                                                <label class="laundry-pill legend-wash"><input type="checkbox" class="laundry-service-checkbox" data-service="Laundry" data-price="20"><i class="fas fa-tint"></i><span> 20 L.E</span></label>
+                                                <span class="laundry-pill laundry-na-pill"><i class="fas fa-wind"></i><span> N/A</span></span>
+                                                <label class="laundry-pill legend-press"><input type="checkbox" class="laundry-service-checkbox" data-service="Pressing" data-price="15"><i class="fas fa-fire-alt"></i><span> 15 L.E</span></label>
+                                            </div>
+                                            <div class="laundry-card-right">
+                                                <div class="laundry-qty-group">
+                                                    <button type="button" class="qty-dec">−</button>
+                                                    <input type="number" class="laundry-qty-input" min="0" value="0">
+                                                    <button type="button" class="qty-inc">+</button>
+                                                </div>
+                                                <div class="laundry-row-total">0.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="laundry-card laundry-row" data-item="Jacket">
+                                            <div class="laundry-card-left">
+                                                <div class="laundry-item-icon"><i class="fas fa-tshirt"></i></div>
+                                                <div class="laundry-item-name">Jacket</div>
+                                            </div>
+                                            <div class="laundry-card-center">
+                                                <label class="laundry-pill legend-wash"><input type="checkbox" class="laundry-service-checkbox" data-service="Laundry" data-price="30"><i class="fas fa-tint"></i><span> 30 L.E</span></label>
+                                                <label class="laundry-pill legend-dry"><input type="checkbox" class="laundry-service-checkbox" data-service="Dry Cleaning" data-price="50"><i class="fas fa-wind"></i><span> 50 L.E</span></label>
+                                                <label class="laundry-pill legend-press"><input type="checkbox" class="laundry-service-checkbox" data-service="Pressing" data-price="20"><i class="fas fa-fire-alt"></i><span> 20 L.E</span></label>
+                                            </div>
+                                            <div class="laundry-card-right">
+                                                <div class="laundry-qty-group">
+                                                    <button type="button" class="qty-dec">−</button>
+                                                    <input type="number" class="laundry-qty-input" min="0" value="0">
+                                                    <button type="button" class="qty-inc">+</button>
+                                                </div>
+                                                <div class="laundry-row-total">0.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="laundry-card laundry-row" data-item="Galabeya">
+                                            <div class="laundry-card-left">
+                                                <div class="laundry-item-icon"><i class="fas fa-tshirt"></i></div>
+                                                <div class="laundry-item-name">Galabeya</div>
+                                            </div>
+                                            <div class="laundry-card-center">
+                                                <label class="laundry-pill legend-wash"><input type="checkbox" class="laundry-service-checkbox" data-service="Laundry" data-price="50"><i class="fas fa-tint"></i><span> 50 L.E</span></label>
+                                                <label class="laundry-pill legend-dry"><input type="checkbox" class="laundry-service-checkbox" data-service="Dry Cleaning" data-price="70"><i class="fas fa-wind"></i><span> 70 L.E</span></label>
+                                                <label class="laundry-pill legend-press"><input type="checkbox" class="laundry-service-checkbox" data-service="Pressing" data-price="25"><i class="fas fa-fire-alt"></i><span> 25 L.E</span></label>
+                                            </div>
+                                            <div class="laundry-card-right">
+                                                <div class="laundry-qty-group">
+                                                    <button type="button" class="qty-dec">−</button>
+                                                    <input type="number" class="laundry-qty-input" min="0" value="0">
+                                                    <button type="button" class="qty-inc">+</button>
+                                                </div>
+                                                <div class="laundry-row-total">0.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="laundry-card laundry-row" data-item="Dress">
+                                            <div class="laundry-card-left">
+                                                <div class="laundry-item-icon"><i class="fas fa-tshirt"></i></div>
+                                                <div class="laundry-item-name">Dress</div>
+                                            </div>
+                                            <div class="laundry-card-center">
+                                                <label class="laundry-pill legend-wash"><input type="checkbox" class="laundry-service-checkbox" data-service="Laundry" data-price="55"><i class="fas fa-tint"></i><span> 55 L.E</span></label>
+                                                <label class="laundry-pill legend-dry"><input type="checkbox" class="laundry-service-checkbox" data-service="Dry Cleaning" data-price="85"><i class="fas fa-wind"></i><span> 85 L.E</span></label>
+                                                <label class="laundry-pill legend-press"><input type="checkbox" class="laundry-service-checkbox" data-service="Pressing" data-price="30"><i class="fas fa-fire-alt"></i><span> 30 L.E</span></label>
+                                            </div>
+                                            <div class="laundry-card-right">
+                                                <div class="laundry-qty-group">
+                                                    <button type="button" class="qty-dec">−</button>
+                                                    <input type="number" class="laundry-qty-input" min="0" value="0">
+                                                    <button type="button" class="qty-inc">+</button>
+                                                </div>
+                                                <div class="laundry-row-total">0.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="laundry-card laundry-row" data-item="Pyjama / Nightgown">
+                                            <div class="laundry-card-left">
+                                                <div class="laundry-item-icon"><i class="fas fa-tshirt"></i></div>
+                                                <div class="laundry-item-name">Pyjama / Nightgown</div>
+                                            </div>
+                                            <div class="laundry-card-center">
+                                                <label class="laundry-pill legend-wash"><input type="checkbox" class="laundry-service-checkbox" data-service="Laundry" data-price="30"><i class="fas fa-tint"></i><span> 30 L.E</span></label>
+                                                <span class="laundry-pill laundry-na-pill"><i class="fas fa-wind"></i><span> N/A</span></span>
+                                                <label class="laundry-pill legend-press"><input type="checkbox" class="laundry-service-checkbox" data-service="Pressing" data-price="15"><i class="fas fa-fire-alt"></i><span> 15 L.E</span></label>
+                                            </div>
+                                            <div class="laundry-card-right">
+                                                <div class="laundry-qty-group">
+                                                    <button type="button" class="qty-dec">−</button>
+                                                    <input type="number" class="laundry-qty-input" min="0" value="0">
+                                                    <button type="button" class="qty-inc">+</button>
+                                                </div>
+                                                <div class="laundry-row-total">0.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="laundry-card laundry-row" data-item="Knickers / Panties">
+                                            <div class="laundry-card-left">
+                                                <div class="laundry-item-icon"><i class="fas fa-tshirt"></i></div>
+                                                <div class="laundry-item-name">Knickers / Panties</div>
+                                            </div>
+                                            <div class="laundry-card-center">
+                                                <label class="laundry-pill legend-wash"><input type="checkbox" class="laundry-service-checkbox" data-service="Laundry" data-price="15"><i class="fas fa-tint"></i><span> 15 L.E</span></label>
+                                                <span class="laundry-pill laundry-na-pill"><i class="fas fa-wind"></i><span> N/A</span></span>
+                                                <span class="laundry-pill laundry-na-pill"><i class="fas fa-wind"></i><span> N/A</span></span>
+                                            </div>
+                                            <div class="laundry-card-right">
+                                                <div class="laundry-qty-group">
+                                                    <button type="button" class="qty-dec">−</button>
+                                                    <input type="number" class="laundry-qty-input" min="0" value="0">
+                                                    <button type="button" class="qty-inc">+</button>
+                                                </div>
+                                                <div class="laundry-row-total">0.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="laundry-card laundry-row" data-item="Undershirt / Brassieres">
+                                            <div class="laundry-card-left">
+                                                <div class="laundry-item-icon"><i class="fas fa-tshirt"></i></div>
+                                                <div class="laundry-item-name">Undershirt / Brassieres</div>
+                                            </div>
+                                            <div class="laundry-card-center">
+                                                <label class="laundry-pill legend-wash"><input type="checkbox" class="laundry-service-checkbox" data-service="Laundry" data-price="15"><i class="fas fa-tint"></i><span> 15 L.E</span></label>
+                                                <span class="laundry-pill laundry-na-pill"><i class="fas fa-wind"></i><span> N/A</span></span>
+                                                <span class="laundry-pill laundry-na-pill"><i class="fas fa-wind"></i><span> N/A</span></span>
+                                            </div>
+                                            <div class="laundry-card-right">
+                                                <div class="laundry-qty-group">
+                                                    <button type="button" class="qty-dec">−</button>
+                                                    <input type="number" class="laundry-qty-input" min="0" value="0">
+                                                    <button type="button" class="qty-inc">+</button>
+                                                </div>
+                                                <div class="laundry-row-total">0.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="laundry-card laundry-row" data-item="Underwear / Stockings">
+                                            <div class="laundry-card-left">
+                                                <div class="laundry-item-icon"><i class="fas fa-tshirt"></i></div>
+                                                <div class="laundry-item-name">Underwear / Stockings</div>
+                                            </div>
+                                            <div class="laundry-card-center">
+                                                <label class="laundry-pill legend-wash"><input type="checkbox" class="laundry-service-checkbox" data-service="Laundry" data-price="15"><i class="fas fa-tint"></i><span> 15 L.E</span></label>
+                                                <span class="laundry-pill laundry-na-pill"><i class="fas fa-wind"></i><span> N/A</span></span>
+                                                <span class="laundry-pill laundry-na-pill"><i class="fas fa-wind"></i><span> N/A</span></span>
+                                            </div>
+                                            <div class="laundry-card-right">
+                                                <div class="laundry-qty-group">
+                                                    <button type="button" class="qty-dec">−</button>
+                                                    <input type="number" class="laundry-qty-input" min="0" value="0">
+                                                    <button type="button" class="qty-inc">+</button>
+                                                </div>
+                                                <div class="laundry-row-total">0.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="laundry-card laundry-row" data-item="Handkerchief / Socks">
+                                            <div class="laundry-card-left">
+                                                <div class="laundry-item-icon"><i class="fas fa-tshirt"></i></div>
+                                                <div class="laundry-item-name">Handkerchief / Socks</div>
+                                            </div>
+                                            <div class="laundry-card-center">
+                                                <label class="laundry-pill legend-wash"><input type="checkbox" class="laundry-service-checkbox" data-service="Laundry" data-price="15"><i class="fas fa-tint"></i><span> 15 L.E</span></label>
+                                                <span class="laundry-pill laundry-na-pill"><i class="fas fa-wind"></i><span> N/A</span></span>
+                                                <span class="laundry-pill laundry-na-pill"><i class="fas fa-wind"></i><span> N/A</span></span>
+                                            </div>
+                                            <div class="laundry-card-right">
+                                                <div class="laundry-qty-group">
+                                                    <button type="button" class="qty-dec">−</button>
+                                                    <input type="number" class="laundry-qty-input" min="0" value="0">
+                                                    <button type="button" class="qty-inc">+</button>
+                                                </div>
+                                                <div class="laundry-row-total">0.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="laundry-card laundry-row" data-item="Training Suit">
+                                            <div class="laundry-card-left">
+                                                <div class="laundry-item-icon"><i class="fas fa-tshirt"></i></div>
+                                                <div class="laundry-item-name">Training Suit</div>
+                                            </div>
+                                            <div class="laundry-card-center">
+                                                <label class="laundry-pill legend-wash"><input type="checkbox" class="laundry-service-checkbox" data-service="Laundry" data-price="30"><i class="fas fa-tint"></i><span> 30 L.E</span></label>
+                                                <span class="laundry-pill laundry-na-pill"><i class="fas fa-wind"></i><span> N/A</span></span>
+                                                <label class="laundry-pill legend-press"><input type="checkbox" class="laundry-service-checkbox" data-service="Pressing" data-price="20"><i class="fas fa-fire-alt"></i><span> 20 L.E</span></label>
+                                            </div>
+                                            <div class="laundry-card-right">
+                                                <div class="laundry-qty-group">
+                                                    <button type="button" class="qty-dec">−</button>
+                                                    <input type="number" class="laundry-qty-input" min="0" value="0">
+                                                    <button type="button" class="qty-inc">+</button>
+                                                </div>
+                                                <div class="laundry-row-total">0.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="laundry-card laundry-row" data-item="Evening Dress">
+                                            <div class="laundry-card-left">
+                                                <div class="laundry-item-icon"><i class="fas fa-tshirt"></i></div>
+                                                <div class="laundry-item-name">Evening Dress</div>
+                                            </div>
+                                            <div class="laundry-card-center">
+                                                <span class="laundry-pill laundry-na-pill"><i class="fas fa-tint"></i><span> N/A</span></span>
+                                                <label class="laundry-pill legend-dry"><input type="checkbox" class="laundry-service-checkbox" data-service="Dry Cleaning" data-price="90"><i class="fas fa-wind"></i><span> 90 L.E</span></label>
+                                                <label class="laundry-pill legend-press"><input type="checkbox" class="laundry-service-checkbox" data-service="Pressing" data-price="50"><i class="fas fa-fire-alt"></i><span> 50 L.E</span></label>
+                                            </div>
+                                            <div class="laundry-card-right">
+                                                <div class="laundry-qty-group">
+                                                    <button type="button" class="qty-dec">−</button>
+                                                    <input type="number" class="laundry-qty-input" min="0" value="0">
+                                                    <button type="button" class="qty-inc">+</button>
+                                                </div>
+                                                <div class="laundry-row-total">0.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="laundry-card laundry-row" data-item="Pleated Skirt">
+                                            <div class="laundry-card-left">
+                                                <div class="laundry-item-icon"><i class="fas fa-tshirt"></i></div>
+                                                <div class="laundry-item-name">Pleated Skirt</div>
+                                            </div>
+                                            <div class="laundry-card-center">
+                                                <label class="laundry-pill legend-wash"><input type="checkbox" class="laundry-service-checkbox" data-service="Laundry" data-price="60"><i class="fas fa-tint"></i><span> 60 L.E</span></label>
+                                                <label class="laundry-pill legend-dry"><input type="checkbox" class="laundry-service-checkbox" data-service="Dry Cleaning" data-price="70"><i class="fas fa-wind"></i><span> 70 L.E</span></label>
+                                                <label class="laundry-pill legend-press"><input type="checkbox" class="laundry-service-checkbox" data-service="Pressing" data-price="40"><i class="fas fa-fire-alt"></i><span> 40 L.E</span></label>
+                                            </div>
+                                            <div class="laundry-card-right">
+                                                <div class="laundry-qty-group">
+                                                    <button type="button" class="qty-dec">−</button>
+                                                    <input type="number" class="laundry-qty-input" min="0" value="0">
+                                                    <button type="button" class="qty-inc">+</button>
+                                                </div>
+                                                <div class="laundry-row-total">0.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="laundry-card laundry-row" data-item="Coat">
+                                            <div class="laundry-card-left">
+                                                <div class="laundry-item-icon"><i class="fas fa-tshirt"></i></div>
+                                                <div class="laundry-item-name">Coat</div>
+                                            </div>
+                                            <div class="laundry-card-center">
+                                                <span class="laundry-pill laundry-na-pill"><i class="fas fa-tint"></i><span> N/A</span></span>
+                                                <label class="laundry-pill legend-dry"><input type="checkbox" class="laundry-service-checkbox" data-service="Dry Cleaning" data-price="70"><i class="fas fa-wind"></i><span> 70 L.E</span></label>
+                                                <label class="laundry-pill legend-press"><input type="checkbox" class="laundry-service-checkbox" data-service="Pressing" data-price="40"><i class="fas fa-fire-alt"></i><span> 40 L.E</span></label>
+                                            </div>
+                                            <div class="laundry-card-right">
+                                                <div class="laundry-qty-group">
+                                                    <button type="button" class="qty-dec">−</button>
+                                                    <input type="number" class="laundry-qty-input" min="0" value="0">
+                                                    <button type="button" class="qty-inc">+</button>
+                                                </div>
+                                                <div class="laundry-row-total">0.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="laundry-card laundry-row" data-item="Neck Tie / Scarf">
+                                            <div class="laundry-card-left">
+                                                <div class="laundry-item-icon"><i class="fas fa-tshirt"></i></div>
+                                                <div class="laundry-item-name">Neck Tie / Scarf</div>
+                                            </div>
+                                            <div class="laundry-card-center">
+                                                <label class="laundry-pill legend-wash"><input type="checkbox" class="laundry-service-checkbox" data-service="Laundry" data-price="20"><i class="fas fa-tint"></i><span> 20 L.E</span></label>
+                                                <label class="laundry-pill legend-dry"><input type="checkbox" class="laundry-service-checkbox" data-service="Dry Cleaning" data-price="25"><i class="fas fa-wind"></i><span> 25 L.E</span></label>
+                                                <label class="laundry-pill legend-press"><input type="checkbox" class="laundry-service-checkbox" data-service="Pressing" data-price="20"><i class="fas fa-fire-alt"></i><span> 20 L.E</span></label>
+                                            </div>
+                                            <div class="laundry-card-right">
+                                                <div class="laundry-qty-group">
+                                                    <button type="button" class="qty-dec">−</button>
+                                                    <input type="number" class="laundry-qty-input" min="0" value="0">
+                                                    <button type="button" class="qty-inc">+</button>
+                                                </div>
+                                                <div class="laundry-row-total">0.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="laundry-card laundry-row" data-item="Suit 2 Pieces">
+                                            <div class="laundry-card-left">
+                                                <div class="laundry-item-icon"><i class="fas fa-tshirt"></i></div>
+                                                <div class="laundry-item-name">Suit 2 Pieces</div>
+                                            </div>
+                                            <div class="laundry-card-center">
+                                                <span class="laundry-pill laundry-na-pill"><i class="fas fa-tint"></i><span> N/A</span></span>
+                                                <label class="laundry-pill legend-dry"><input type="checkbox" class="laundry-service-checkbox" data-service="Dry Cleaning" data-price="100"><i class="fas fa-wind"></i><span> 100 L.E</span></label>
+                                                <label class="laundry-pill legend-press"><input type="checkbox" class="laundry-service-checkbox" data-service="Pressing" data-price="40"><i class="fas fa-fire-alt"></i><span> 40 L.E</span></label>
+                                            </div>
+                                            <div class="laundry-card-right">
+                                                <div class="laundry-qty-group">
+                                                    <button type="button" class="qty-dec">−</button>
+                                                    <input type="number" class="laundry-qty-input" min="0" value="0">
+                                                    <button type="button" class="qty-inc">+</button>
+                                                </div>
+                                                <div class="laundry-row-total">0.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="laundry-card laundry-row" data-item="Suit 3 Pieces">
+                                            <div class="laundry-card-left">
+                                                <div class="laundry-item-icon"><i class="fas fa-tshirt"></i></div>
+                                                <div class="laundry-item-name">Suit 3 Pieces</div>
+                                            </div>
+                                            <div class="laundry-card-center">
+                                                <span class="laundry-pill laundry-na-pill"><i class="fas fa-tint"></i><span> N/A</span></span>
+                                                <label class="laundry-pill legend-dry"><input type="checkbox" class="laundry-service-checkbox" data-service="Dry Cleaning" data-price="120"><i class="fas fa-wind"></i><span> 120 L.E</span></label>
+                                                <label class="laundry-pill legend-press"><input type="checkbox" class="laundry-service-checkbox" data-service="Pressing" data-price="50"><i class="fas fa-fire-alt"></i><span> 50 L.E</span></label>
+                                            </div>
+                                            <div class="laundry-card-right">
+                                                <div class="laundry-qty-group">
+                                                    <button type="button" class="qty-dec">−</button>
+                                                    <input type="number" class="laundry-qty-input" min="0" value="0">
+                                                    <button type="button" class="qty-inc">+</button>
+                                                </div>
+                                                <div class="laundry-row-total">0.00</div>
+                                            </div>
+                                        </div>
+                                    </div><!-- end laundry-cards-list -->
+                                </div><!-- end laundry-cards-wrapper -->
+                            </div>
+
+                            <div class="laundry-summary">
+                                <div class="laundry-summary-card">
+                                    <span>Total Items</span>
+                                    <strong id="laundrySelectedCount">0</strong>
+                                </div>
+                                <div class="laundry-summary-card highlight">
+                                    <span>Total L.E</span>
+                                    <strong id="laundryGrandTotal">0.00</strong>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="laundrySpecialRequests">Special Requests</label>
+                                <textarea id="laundrySpecialRequests" name="laundrySpecialRequests"
+                                    placeholder="Any notes for the laundry team"></textarea>
+                            </div>
+
+                            <button type="submit" class="submit-btn">
+                                <i class="fas fa-tshirt"></i> Send Laundry Request
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Housekeeping Tab -->
+                    <div id="housekeeping" class="tab-panel">
+                        <div class="panel-header">
+                            <h2><i class="fas fa-home"></i> Housekeeping</h2>
+                        </div>
+
+                        <form class="service-form" id="housekeepingForm">
+                            <div class="form-group">
+                                <label for="housekeepingCustomerName">Your Name *</label>
+                                <input type="text" id="housekeepingCustomerName" name="housekeepingCustomerName"
+                                    required placeholder="Enter your name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="housekeepingRoomNumber">Room Number *</label>
+                                <input type="text" id="housekeepingRoomNumber" name="housekeepingRoomNumber" required
+                                    placeholder="Enter your room number">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="immediateService" name="immediateService">
+                                    <span class="checkmark"></span>
+                                    Request immediate housekeeping
+                                </label>
+                            </div>
+
+                            <div class="form-group" id="dateTimeFields">
+                                <label for="cleaningDate">Preferred Date</label>
+                                <input type="date" id="cleaningDate" name="cleaningDate" required>
+                            </div>
+
+                            <div class="form-group" id="timeField">
+                                <label for="cleaningTime">Preferred Time</label>
+                                <input type="time" id="cleaningTime" name="cleaningTime" required>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="housekeepingSpecialRequests">Special Requests</label>
+                                <textarea id="housekeepingSpecialRequests" name="housekeepingSpecialRequests"
+                                    placeholder="Any special requirements or areas to focus on"></textarea>
+                            </div>
+
+                            <button type="submit" class="submit-btn">
+                                <i class="fas fa-home"></i> Send Housekeeping Request
+                            </button>
+                        </form>
+                    </div>
+        </main>
+        <!-- Footer Start -->
+        <footer class="dy-footer">
+            <div class="dy-footer__grid">
+                <div class="dy-footer__brand">
+                    <a class="dy-footer__name" href="index.html"><strong>DYAFA PYRAMIDS</strong><span>HOTEL &amp; SPA</span></a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Dyafa%20Pyramids%20Hotel%2059%20Abo%20Elhol%20Elsiahy%2C%20ElMansorya%20%E2%80%93%20Nazlet%20Elsemman" target="_blank" rel="noopener"><i class="fa fa-map-marker-alt"></i>59 Abo Elhol Elsiahy, ElMansorya – Nazlet Elsemman</a>
+                    <a href="tel:+201154523544"><i class="fa fa-mobile-alt"></i>+2 01154523544</a>
+                    <a href="tel:+20233865731"><i class="fa fa-phone-alt"></i>+202 33865731</a>
+                    <a href="mailto:dyafapyramidshotel@gmail.com"><i class="fa fa-envelope"></i>dyafapyramidshotel@gmail.com</a>
+                </div>
+                <div class="dy-footer__col">
+                    <h6>Contact</h6>
+                    <a class="dy-footer__plain" href="https://www.google.com/maps/search/?api=1&query=Dyafa%20Pyramids%20Hotel%2059%20Abo%20Elhol%20Elsiahy%2C%20ElMansorya%20%E2%80%93%20Nazlet%20Elsemman" target="_blank" rel="noopener"><i class="fa fa-map-marker-alt"></i>59 Abo Elhol Elsiahy, ElMansorya – Nazlet Elsemman</a>
+                    <a class="dy-footer__plain" href="tel:+201154523544"><i class="fa fa-phone-alt"></i>+2 01154523544</a>
+                    <a class="dy-footer__plain" href="mailto:dyafapyramidshotel@gmail.com"><i class="fa fa-envelope"></i>dyafapyramidshotel@gmail.com</a>
+                    <div class="dy-footer__social">
+                        <a href="#" data-social="twitter" aria-label="Twitter / X"><i class="fab fa-twitter"></i></a>
+                        <a href="#" data-social="facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" data-social="youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" data-social="linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="dy-footer__col">
+                    <h6>Company</h6>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact Us</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms &amp; Conditions</a>
+                    <a href="contact.html">Support</a>
+                    <a href="guest-services.html">Guest Services</a>
+                </div>
+                <div class="dy-footer__col">
+                    <h6>Services</h6>
+                    <a href="guest-services.html#food">Food &amp; Restaurant</a>
+                    <a href="service.html#spa-fitness">Spa &amp; Fitness</a>
+                    <a href="service.html#sports-gaming">Sports &amp; Gaming</a>
+                    <a href="service.html#event-party">Event &amp; Party</a>
+                    <a href="service.html#gym-yoga">GYM &amp; Yoga</a>
+                </div>
+            </div>
+            <div class="dy-footer__bar">
+                <div>&copy; Dyafa Pyramids Hotel &amp; Spa, All Rights Reserved. Designed By <a
+                        href="https://wa.me/201121036522" target="_blank" rel="noopener noreferrer"
+                        style="color: #00a680;">Ahmed Hany</a></div>
+                <nav aria-label="Footer"><a href="index.html">Home</a><a href="privacy.html#cookies">Cookies</a><a href="contact.html">Help</a><a href="contact.html">FAQs</a></nav>
+            </div>
+        </footer>
+        <!-- Footer End -->
+    </div>
+
+    <!-- Floating Order Button -->
+    <button id="floatingOrderBtn" class="floating-order-btn" onclick="scrollToCart()" title="Go to Order Form">
+<i class="fas fa-bell"></i>
+        <span>Order Now</span>
+        <span id="floatingOrderBadge" class="floating-order-badge" style="display:none;">0</span>
+    </button>
+
+    <!-- Fixed Notification Container -->
+    <div id="notificationContainer" class="notification-container">
+        <!-- Notifications will be dynamically added here -->
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-check-circle"></i> Confirm Your Request</h3>
+                <button class="close-btn" onclick="closeConfirmationModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="confirmationContent">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="confirm-btn" id="confirmSendBtn">
+                    <i class="fas fa-check"></i> Confirm
+                </button>
+                <button class="cancel-btn" onclick="closeConfirmationModal()">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/guest-services.js"></script>
+    <script src="js/site.js"></script>
+</body>
+
+</html>

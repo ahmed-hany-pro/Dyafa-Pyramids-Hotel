@@ -1,0 +1,52 @@
+/* Booking call-to-action banner (replaces the availability form) */
+.booking{margin-top:-80px!important;position:relative;z-index:2}
+.bcta{position:relative;overflow:hidden;display:grid;grid-template-columns:1.15fr auto;gap:28px 40px;align-items:center;
+  padding:34px 40px;border-radius:20px;background:linear-gradient(135deg,var(--dy-surface) 0%,var(--dy-surface-2) 100%);
+  border:1px solid var(--dy-gold);box-shadow:0 24px 60px rgba(0,0,0,.45),0 0 0 6px rgba(212,175,55,.08)}
+.bcta::before{content:"";position:absolute;inset:-40% -10% auto auto;width:420px;height:420px;border-radius:50%;
+  background:radial-gradient(circle,rgba(243,213,107,.22),transparent 65%);pointer-events:none}
+.bcta__eyebrow{display:inline-flex;align-items:center;gap:8px;font:700 .72rem "Inter",sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--dy-accent-text)}
+.bcta__eyebrow i{color:var(--dy-gold)}
+.bcta__title{font-family:"Playfair Display",serif;font-weight:600;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.2;color:var(--dy-heading);margin:.5rem 0 .6rem}
+.bcta__title span{color:var(--dy-gold)}
+.bcta__sub{margin:0 0 16px;color:var(--dy-muted);font-size:.98rem;max-width:560px}
+.bcta__chips{display:flex;flex-wrap:wrap;gap:8px}
+.bcta__chip{font:600 .72rem "Inter",sans-serif;padding:6px 12px;border-radius:999px;color:#fff;white-space:nowrap}
+.bcta__chip--wa{background:#14141b;color:var(--dy-gold-2);border:1px solid var(--dy-gold)}
+.bcta__action{position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.bcta__btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:12px;padding:20px 38px;border-radius:14px;
+  background:linear-gradient(135deg,var(--dy-gold-2),var(--dy-gold));color:#14141b!important;text-decoration:none;
+  font:800 1.05rem "Inter",sans-serif;letter-spacing:.1em;text-transform:uppercase;
+  box-shadow:0 12px 30px rgba(212,175,55,.4);animation:bctaPulse 2.4s infinite;transition:transform .25s}
+.bcta__btn:hover{transform:translateY(-3px) scale(1.03);color:#14141b!important}
+.bcta__btn i{transition:transform .25s}
+.bcta__btn:hover i{transform:translateX(6px)}
+.bcta__btn::after{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:bctaShine 3.2s infinite}
+.bcta__note{font:500 .8rem "Inter",sans-serif;color:var(--dy-muted)}
+.bcta__note i{color:var(--dy-gold);margin-right:5px}
+@keyframes bctaPulse{0%{box-shadow:0 12px 30px rgba(212,175,55,.4),0 0 0 0 rgba(212,175,55,.55)}70%{box-shadow:0 12px 30px rgba(212,175,55,.4),0 0 0 18px rgba(212,175,55,0)}100%{box-shadow:0 12px 30px rgba(212,175,55,.4),0 0 0 0 rgba(212,175,55,0)}}
+@keyframes bctaShine{0%,55%{left:-70%}100%{left:130%}}
+@media (max-width:991px){.bcta{grid-template-columns:1fr;padding:28px 24px;text-align:center}
+  .bcta__sub{margin-left:auto;margin-right:auto}.bcta__chips{justify-content:center}.booking{margin-top:-60px!important}
+  .bcta__btn{width:100%;justify-content:center}}
+
+/* Floating book button */
+.bfloat{position:fixed;left:18px;bottom:22px;z-index:99;display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;
+  background:linear-gradient(135deg,var(--dy-gold-2),var(--dy-gold));color:#14141b!important;text-decoration:none;
+  font:800 .85rem "Inter",sans-serif;letter-spacing:.1em;text-transform:uppercase;box-shadow:0 10px 26px rgba(0,0,0,.4);
+  animation:bctaPulse 2.4s infinite;transition:transform .25s}
+.bfloat:hover{transform:translateY(-3px);color:#14141b!important}
+@media (prefers-reduced-motion:reduce){.bcta__btn,.bfloat,.bcta__btn::after{animation:none}}
+
+/* Floating Book Now: hidden until the booking banner is scrolled past */
+.bfloat{opacity:0;visibility:hidden;pointer-events:none;transform:translateY(16px);transition:opacity .3s,transform .3s,visibility .3s}
+.bfloat.is-visible{opacity:1;visibility:visible;pointer-events:auto;transform:none}
+.bfloat.is-visible:hover{transform:translateY(-3px)}
+
+/* Same level as back-to-top, calm (no pulsing) */
+.bfloat{left:45px;bottom:45px;padding:12px 20px;animation:none!important;box-shadow:0 6px 16px rgba(0,0,0,.35)}
+/* match the back-to-top button's height so both sit on one line */
+.bfloat{height:48px;padding:0 20px;line-height:1}
+.back-to-top{width:48px;height:48px}
+@media (max-width:575px){.bfloat{left:20px;bottom:20px}.back-to-top{right:20px!important;bottom:20px!important}}

@@ -1,0 +1,28 @@
+/* Booking page: choose your booking platform */
+.bk{padding:70px 0 40px}
+.bk__head{text-align:center;max-width:720px;margin:0 auto 42px}
+.bk__eyebrow{font:600 .8rem "Inter",sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--dy-accent-text)}
+.bk__title{font-family:"Playfair Display",serif;font-weight:600;font-size:clamp(1.9rem,4vw,2.7rem);color:var(--dy-heading);margin:.4rem 0 .8rem}
+.bk__lead{color:var(--dy-muted);margin:0;font-size:1.02rem}
+.bk__grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px;max-width:1140px;margin:0 auto;padding:0 16px}
+.bk-card{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:26px;border-radius:var(--dy-radius);
+  background:var(--dy-surface);border:1px solid var(--dy-border);box-shadow:var(--dy-shadow);text-decoration:none;color:var(--dy-text);
+  transition:transform .25s,border-color .25s,box-shadow .25s}
+.bk-card:hover{transform:translateY(-5px);border-color:var(--dy-gold);color:var(--dy-text)}
+.bk-card__logo{height:52px;min-width:52px;padding:0 16px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  font:800 1.15rem/1 "Inter",sans-serif;letter-spacing:-.02em;color:#fff;white-space:nowrap}
+.bk-card__logo i{font-size:1.5rem}
+.bk-card__name{font:600 1.15rem "Inter",sans-serif;margin:0}
+.bk-card__desc{margin:0;color:var(--dy-muted);font-size:.92rem;flex:1}
+.bk-card__go{display:inline-flex;align-items:center;gap:8px;font:600 .85rem "Inter",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--dy-accent-text)}
+.bk-card__go i{transition:transform .25s}
+.bk-card:hover .bk-card__go i{transform:translateX(4px)}
+.bk-card--direct{background:linear-gradient(135deg,var(--dy-gold-2),var(--dy-gold));border-color:transparent;color:#14141b}
+.bk-card--direct .bk-card__desc,.bk-card--direct .bk-card__go,.bk-card--direct:hover{color:#14141b}
+.bk-card--direct .bk-card__logo{background:#14141b;color:var(--dy-gold-2)}
+.bk-card__tag{position:absolute;top:14px;right:14px;font:700 .65rem "Inter",sans-serif;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:#14141b;color:var(--dy-gold-2)}
+.bk__note{text-align:center;color:var(--dy-muted);font-size:.88rem;margin:28px auto 0;max-width:620px;padding:0 16px}
+.bk__note i{color:var(--dy-accent-text);margin-right:6px}
+@media (max-width:575px){.bk{padding:48px 0 24px}.bk-card{padding:22px}}
+.bk .bk-card .bk-card__name{font-family:"Inter",sans-serif!important;font-weight:600;color:var(--dy-text)!important}
+.bk .bk-card--direct .bk-card__name{color:#14141b!important}

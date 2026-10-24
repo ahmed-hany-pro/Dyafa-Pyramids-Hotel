@@ -1,0 +1,57 @@
+/* Re-skins the Hotelier/Bootstrap pages to the Dyafa theme. Load AFTER bootstrap.min.css and style.css. */
+:root{--primary:#d4af37;--dark:#0b0b0f;--light:var(--dy-surface-2)}
+
+body{font-family:"Inter",sans-serif;color:var(--dy-text);
+  background:radial-gradient(1200px 700px at 20% -10%,rgba(212,175,55,.16) 0%,transparent 60%),
+             radial-gradient(900px 600px at 110% 10%,rgba(243,213,107,.08) 0%,transparent 55%),var(--dy-bg);
+  background-attachment:fixed}
+:root[data-theme="light"] body{background:radial-gradient(1200px 700px at 20% -10%,rgba(212,175,55,.12) 0%,transparent 60%),var(--dy-bg)}
+body :is(h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.display-1,.display-2,.display-3,.display-4,.display-5,.display-6){font-family:"Playfair Display",serif;color:var(--dy-heading)}
+.bg-dark :is(h1,h2,h3,h4,h5,h6):not([class*="text-"]){color:#fff}
+.section-title{font-family:"Inter",sans-serif!important;letter-spacing:.2em}
+.dy-page,.container-xxl{background:transparent!important}
+.dy-page>.bg-white{background:transparent!important}
+
+/* surfaces */
+.bg-white{background:var(--dy-surface)!important}
+.bg-light{background:var(--dy-surface-2)!important}
+.bg-dark{background:#0b0b0f!important;color:#e7e0d3}
+.text-body{color:var(--dy-text)!important}
+.text-dark{color:var(--dy-heading)!important}
+.bg-primary .text-dark,.btn-primary.text-dark{color:#14141b!important}
+.text-primary{color:var(--dy-accent-text)!important}
+.bg-dark .text-primary,.bg-dark.text-primary{color:var(--dy-gold)!important}
+.bg-primary{background:var(--dy-gold)!important}
+.border,.border-end,.border-bottom,.border-top{border-color:var(--dy-border)!important}
+.shadow{box-shadow:var(--dy-shadow)!important}
+.rounded{border-radius:var(--dy-radius)!important}
+.rounded-0{border-radius:0!important}
+.service-item{background:var(--dy-surface);border-radius:var(--dy-radius);border:1px solid var(--dy-border);box-shadow:var(--dy-shadow)}
+.service-item:hover i,.service-item:hover h5,.service-item:hover p{color:#14141b!important}
+
+/* buttons */
+.btn{border-radius:12px;letter-spacing:.08em}
+.btn.btn-primary{background:linear-gradient(135deg,var(--dy-gold-2),var(--dy-gold));border-color:var(--dy-gold);color:#14141b!important}
+.btn.btn-primary:hover{filter:brightness(1.08);color:#14141b!important}
+.btn.btn-dark{background:#0b0b0f;border-color:var(--dy-gold);color:var(--dy-gold)}
+.btn.btn-dark:hover{background:var(--dy-gold);color:#14141b}
+.btn.btn-light{background:var(--dy-surface-2);color:var(--dy-text);border-color:var(--dy-border)}
+.btn-square,.btn-sm-square,.btn-lg-square{border-radius:12px}
+.btn-link{color:inherit}.btn-link:hover{color:var(--dy-gold)}
+.owl-prev,.owl-next{color:#14141b!important}
+
+/* forms */
+.form-control,.form-select{background:var(--dy-surface-2);color:var(--dy-text);border:1px solid var(--dy-border);border-radius:12px}
+.form-control::placeholder{color:var(--dy-muted)}
+.form-control:focus,.form-select:focus{background:var(--dy-surface-2);color:var(--dy-text);border-color:var(--dy-gold);box-shadow:0 0 0 .2rem rgba(212,175,55,.2)}
+.form-floating>label{color:var(--dy-muted)}
+.bootstrap-datetimepicker-widget{background:var(--dy-surface)!important;color:var(--dy-text)!important;border:1px solid var(--dy-border)}
+.bootstrap-datetimepicker-widget .active{background:var(--dy-gold)!important;color:#14141b!important}
+.bootstrap-datetimepicker-widget table td:hover,.bootstrap-datetimepicker-widget table th:hover{background:var(--dy-surface-2)!important}
+
+/* navy tint -> neutral black tint, to match the logo */
+.carousel-caption,.page-header-inner{background:rgba(7,7,10,.7)!important}
+.testimonial{background-image:linear-gradient(rgba(7,7,10,.78),rgba(7,7,10,.78)),url(../img/carousel-2.jpg)}
+.video{background-image:linear-gradient(rgba(7,7,10,.15),rgba(7,7,10,.15)),url(../img/video.jpg)}
+#spinner{background:var(--dy-bg)!important}
+.footer .btn-social{border-color:var(--dy-border)}
